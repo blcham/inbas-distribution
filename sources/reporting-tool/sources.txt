@@ -1,1 +1,0 @@
-Zdrojové kódy reportovacího nástroje jsou k dispozici na https://github.com/kbss-cvut/reporting-tool
