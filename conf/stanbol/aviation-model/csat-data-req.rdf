@@ -1,0 +1,285 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req/"
+     xml:base="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req">
+        <owl:imports rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/core"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/has_part -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/has_part"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/is_generated_by -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_generated_by"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/is_information_about -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_information_about"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/is_part_of -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_part_of"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#measureOf -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#measureOf">
+        <rdfs:subPropertyOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/relates_to"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Agent -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/Agent"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Event -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/Event"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Factor -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/Factor"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Object -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/Object"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Report -->
+
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/Report">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/has_part"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#Statement"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditEvent -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditEvent">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#SafetyManagementEvent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_part_of"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Process"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditFindingEvent -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditFindingEvent">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#SafetyEvent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_part_of"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditEvent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditFindingReport -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditFindingReport">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_generated_by"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Agent"/>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Report"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_information_about"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditFindingEvent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditFindingReporting -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditFindingReporting">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#ReportingEvent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_caused_by"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditFindingEvent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditReport -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditReport">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Report"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_information_about"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#AuditEvent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#CSAT-dataintegration-requirements -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#CSAT-dataintegration-requirements"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#CorrectiveMeasure -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#CorrectiveMeasure">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/regulation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_part_of"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Report"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#measureOf"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#Statement"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#OperationalEvent -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#OperationalEvent">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#SafetyEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#OperationalIncidentReporting -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#OperationalIncidentReporting">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#ReportingEvent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_caused_by"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#OperationalEvent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#ReportingEvent -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#ReportingEvent">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#SafetyManagementEvent"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_caused_by"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#SafetyEvent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#SafetyEvent -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#SafetyEvent">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#SafetyManagementEvent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#SafetyManagementEvent -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#SafetyManagementEvent">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#Statement -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/csat/data-req#Statement">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Object"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_information_about"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Factor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+

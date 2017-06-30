@@ -1,0 +1,491 @@
+# baseURI: http://onto.fel.cvut.cz/ontologies/aviation/e5x-enhancement
+# imports: http://onto.fel.cvut.cz/ontologies/aviation/e5x-enhancement-model
+# imports: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-mapping-0.2
+# imports: http://onto.fel.cvut.cz/ontologies/lib/sm-module-adapter
+# imports: http://onto.fel.cvut.cz/ontologies/lib/spin-function
+# imports: http://topbraid.org/sparqlmotionfunctions
+# imports: http://topbraid.org/sparqlmotionlib-core
+
+@prefix : <http://onto.fel.cvut.cz/ontologies/aviation/e5x-enhancement/> .
+@prefix e5x-enh: <http://onto.fel.cvut.cz/ontologies/aviation/e5x-enhancement/> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions#> .
+@prefix form-ecc-map-0.2: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-mapping-0.2/> .
+@prefix kbss-module: <http://onto.fel.cvut.cz/ontologies/lib/module/> .
+@prefix kbss-spif: <http://onto.fel.cvut.cz/ontologies/lib/spin-function/> .
+@prefix km-param: <http://onto.fel.cvut.cz/ontologies/lib/module-param/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rt: <http://onto.fel.cvut.cz/ontologies/reporting-tool/> .
+@prefix sm: <http://topbraid.org/sparqlmotion#> .
+@prefix sml: <http://topbraid.org/sparqlmotionlib#> .
+@prefix sp: <http://spinrdf.org/sp#> .
+@prefix spif: <http://spinrdf.org/spif#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix spl: <http://spinrdf.org/spl#> .
+@prefix turtle: <http://www.semanticweb.org/owl/owlapi/turtle#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://onto.fel.cvut.cz/ontologies/aviation/e5x-enhancement>
+  rdf:type owl:Ontology ;
+  rdfs:comment "Provides scripts to enhance e5x form filling, e.g. providing relevant eccairs attributes based on partially completed form, providing possible factors of an event, etc." ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/aviation/e5x-enhancement-model> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-mapping-0.2> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/lib/sm-module-adapter> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/lib/spin-function> ;
+  owl:imports <http://topbraid.org/sparqlmotionfunctions> ;
+  owl:imports <http://topbraid.org/sparqlmotionlib-core> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+e5x-enh:bind-event-type
+  rdf:type sml:BindBySelect ;
+  sml:selectQuery [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "eventType" ;
+          ]
+        ) ;
+      sp:text """SELECT ?eventType
+WHERE {
+     ?i rt:has_event_type ?eventType . 
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "eventType" ;
+              ] ;
+            sp:predicate rt:has_event_type ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  rdfs:label "bind-event-type" ;
+.
+e5x-enh:e5x-report-hint
+  rdf:type sm:Function ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:defaultValue "http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2/vl-a-390/v-2180107" ;
+      spl:optional "false"^^xsd:boolean ;
+      spl:predicate e5x-enh:organizationName ;
+      sm:next form-ecc-map-0.2:construct-mapping-tmp ;
+      rdfs:comment "Name of organization for which report hints should be generated." ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:defaultValue "http://onto.fel.cvut.cz/ontologies/resources/9d68843c-b569-11e6-80f5-76304dec7eb7" ;
+      spl:optional "false"^^xsd:boolean ;
+      spl:predicate e5x-enh:e5xResourceUri ;
+      sm:next e5x-enh:import-e5x-file ;
+      rdfs:comment "E5x content resource uri." ;
+    ] ;
+  sm:returnModule e5x-enh:e5x-report-hint_Return ;
+  rdfs:comment "Get e5x report hint." ;
+  rdfs:subClassOf sm:Functions ;
+.
+e5x-enh:e5x-report-hint_Return
+  rdf:type sml:ReturnRDF ;
+  sml:serialization sml:JSONLD ;
+  rdfs:label "Return e5x report hint" ;
+.
+e5x-enh:e5xResourceUri
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "E5x content resource uri" ;
+  rdfs:range xsd:string ;
+.
+e5x-enh:import-e5x-file
+  rdf:type kbss-module:import-e5x ;
+  km-param:has-resource-uri [
+      sp:varName "e5xResourceUri" ;
+    ] ;
+  sm:next e5x-enh:bind-event-type ;
+  sm:next form-ecc-map-0.2:construct-mapping-tmp ;
+  rdfs:label "Import e5x file" ;
+.
+e5x-enh:organizationName
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Organization type such as aerodrome, ans, airport, maintance" ;
+  rdfs:range xsd:string ;
+.
+<http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-config-0.2/bind-eccairs-mapping-service-uri>
+  sm:next form-ecc-map-0.2:construct-mapping-tmp ;
+.
+form-ecc-map-0.2:construct-mapping-tmp
+  sm:next e5x-enh:e5x-report-hint_Return ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "eccEventTypeUri" ;
+              ] ;
+            sp:predicate <http://onto.fel.cvut.cz/ontologies/aviation/e5x-enhancement-model/has-reference-to-event-type> ;
+            sp:subject [
+                sp:varName "e5xReport" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 0 - get referenced event types
+CONSTRUCT {
+    ?e5xReport e5x-enh-mod:has-reference-to-event-type ?eccEventTypeUri .
+} 
+WHERE {
+     BIND(URI(?e5xResourceUri) as ?e5xReport)
+     ?i e-m:has-code-value ?eccEventType .
+     FILTER(contains(str(?eccEventType), \"vl-a-390\"))
+}
+""" ;
+      sp:where (
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    sp:varName "e5xResourceUri" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "e5xReport" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "eccEventType" ;
+              ] ;
+            sp:predicate <http://onto.fel.cvut.cz/ontologies/eccairs/model/has-code-value> ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:contains ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "eccEventType" ;
+                      ] ;
+                  ] ;
+                sp:arg2 "vl-a-390" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "0 - get referenced event types" ;
+    ] ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "eccEventTypeUri" ;
+              ] ;
+            sp:predicate <http://onto.fel.cvut.cz/ontologies/aviation/e5x-enhancement-model/has-reference-to-event-type> ;
+            sp:subject [
+                sp:varName "e5xReport" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "eventLabel" ;
+              ] ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "eccEventTypeUri" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "eventDescription" ;
+              ] ;
+            sp:predicate rdfs:comment ;
+            sp:subject [
+                sp:varName "eccEventTypeUri" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 1 - get referenced event types metadata
+CONSTRUCT {
+    ?e5xReport e5x-enh-mod:has-reference-to-event-type ?eccEventTypeUri .
+    ?eccEventTypeUri   rdfs:label ?eventLabel ;
+                                     rdfs:comment ?eventDescription .
+} 
+WHERE {
+     BIND(URI(?e5xResourceUri) as ?e5xReport)
+     ?i e-m:has-code-value ?eccEventType .
+     FILTER(contains(str(?eccEventType), \"vl-a-390\"))
+     BIND(uri(?eccEventType) as ?eccEventTypeUri )
+     SERVICE ?eccairsSchemaServiceUri {
+          ?eccEventTypeUri rdfs:label ?eventLabel .
+          OPTIONAL {
+             ?eccEventTypeUri e-m:has-explanation ?eventDescription .
+          }
+     }   
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    sp:varName "e5xResourceUri" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "e5xReport" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "eccEventType" ;
+              ] ;
+            sp:predicate <http://onto.fel.cvut.cz/ontologies/eccairs/model/has-code-value> ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:contains ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "eccEventType" ;
+                      ] ;
+                  ] ;
+                sp:arg2 "vl-a-390" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    sp:varName "eccEventType" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "eccEventTypeUri" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "eventLabel" ;
+                    ] ;
+                  sp:predicate rdfs:label ;
+                  sp:subject [
+                      sp:varName "eccEventTypeUri" ;
+                    ] ;
+                ]
+                [
+                  rdf:type sp:Optional ;
+                  sp:elements (
+                      [
+                        sp:object [
+                            sp:varName "eventDescription" ;
+                          ] ;
+                        sp:predicate <http://onto.fel.cvut.cz/ontologies/eccairs/model/has-explanation> ;
+                        sp:subject [
+                            sp:varName "eccEventTypeUri" ;
+                          ] ;
+                      ]
+                    ) ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "eccairsSchemaServiceUri" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "1 - get referenced event types metadata" ;
+    ] ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "relatedAttr" ;
+              ] ;
+            sp:predicate <http://onto.fel.cvut.cz/ontologies/aviation/e5x-enhancement-model/has-possible-attribute-type> ;
+            sp:subject [
+                sp:varName "e5xReport" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "attrLabel" ;
+              ] ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "relatedAttr" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "attrDescription" ;
+              ] ;
+            sp:predicate rdfs:comment ;
+            sp:subject [
+                sp:varName "relatedAttr" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 2 - get possible attribute types
+#TODO remove binding ?organizationType
+CONSTRUCT {
+    ?e5xReport  e5x-enh-mod:has-possible-attribute-type   ?relatedAttr .  
+    ?relatedAttr rdfs:label ?attrLabel .
+    ?relatedAttr rdfs:comment ?attrDescription .   
+#    ?relatedAttr e5x-enh-mod:uses-knowledge-from-organization-type ?organizationType .
+}
+WHERE {
+    BIND(URI(?e5xResourceUri) as ?e5xReport)
+    ?i e-m:has-code-value ?eccEventType . 
+    FILTER(contains(str(?eccEventType), \"vl-a-390\"))
+    BIND(uri(?eccEventType) as ?eccEventTypeUri )
+    BIND(\"ans\" as ?organizationType)    
+    SERVICE ?eccairsMappingServiceUri {
+          ?e2aMapping e-m-map:has-e2m-event-type-value ?eccEventTypeUri ;
+                                  e-m-map:has-e2m-if-present-organization-type ?organizationType ;
+                                  e-m-map:has-e2m-related-attribute-value ?relatedAttr .
+    }    
+    SERVICE ?eccairsSchemaServiceUri {
+          ?relatedAttr rdfs:label ?attrLabel .
+          OPTIONAL {
+             ?relatedAttr e-m:has-explanation ?attrDescription .
+          }
+    }   
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    sp:varName "e5xResourceUri" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "e5xReport" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "eccEventType" ;
+              ] ;
+            sp:predicate <http://onto.fel.cvut.cz/ontologies/eccairs/model/has-code-value> ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:contains ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "eccEventType" ;
+                      ] ;
+                  ] ;
+                sp:arg2 "vl-a-390" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    sp:varName "eccEventType" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "eccEventTypeUri" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression "ans" ;
+            sp:variable [
+                sp:varName "organizationType" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "eccEventTypeUri" ;
+                    ] ;
+                  sp:predicate <http://onto.fel.cvut.cz/ontologies/eccairs/mapping/model/has-e2m-event-type-value> ;
+                  sp:subject [
+                      sp:varName "e2aMapping" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "organizationType" ;
+                    ] ;
+                  sp:predicate <http://onto.fel.cvut.cz/ontologies/eccairs/mapping/model/has-e2m-if-present-organization-type> ;
+                  sp:subject [
+                      sp:varName "e2aMapping" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "relatedAttr" ;
+                    ] ;
+                  sp:predicate <http://onto.fel.cvut.cz/ontologies/eccairs/mapping/model/has-e2m-related-attribute-value> ;
+                  sp:subject [
+                      sp:varName "e2aMapping" ;
+                    ] ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "eccairsMappingServiceUri" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "attrLabel" ;
+                    ] ;
+                  sp:predicate rdfs:label ;
+                  sp:subject [
+                      sp:varName "relatedAttr" ;
+                    ] ;
+                ]
+                [
+                  rdf:type sp:Optional ;
+                  sp:elements (
+                      [
+                        sp:object [
+                            sp:varName "attrDescription" ;
+                          ] ;
+                        sp:predicate <http://onto.fel.cvut.cz/ontologies/eccairs/model/has-explanation> ;
+                        sp:subject [
+                            sp:varName "relatedAttr" ;
+                          ] ;
+                      ]
+                    ) ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "eccairsSchemaServiceUri" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment """2 - get possible attribute types
+TODO remove binding ?organizationType""" ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+.

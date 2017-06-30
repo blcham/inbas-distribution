@@ -1,0 +1,9 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix form-ecc: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix : <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-static> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-static-0.2> a owl:Ontology ;
+	owl:versionInfo "Created with TopBraid Composer"^^xsd:string .

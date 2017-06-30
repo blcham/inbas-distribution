@@ -1,0 +1,158 @@
+# baseURI: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-lib
+# imports: http://onto.fel.cvut.cz/ontologies/form
+# imports: http://spinrdf.org/spin
+
+@prefix eccairs-form-stabl: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-stable> .
+@prefix for: <http://onto.fel.cvut.cz/ontologies/form> .
+@prefix form-ecc: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form/> .
+@prefix form-ecc-gen: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generated/> .
+@prefix form-ecc-lib: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-lib/> .
+@prefix form-lt: <http://onto.fel.cvut.cz/ontologies/form-layout/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sp: <http://spinrdf.org/sp#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix spl: <http://spinrdf.org/spl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-lib>
+  rdf:type owl:Ontology ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/form> ;
+  owl:imports <http://spinrdf.org/spin> ;
+.
+form-ecc-lib:create-a
+  rdf:type spin:Function ;
+  spin:body [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "answer"^^xsd:string ;
+          ]
+        ) ;
+      sp:text """SELECT ?answer
+WHERE {
+     BIND (URI(CONCAT(str(?arg1),\"-\",\"a\")) AS ?answer) .
+}
+    
+"""^^xsd:string ;
+      sp:where (
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    rdf:type sp:concat ;
+                    sp:arg1 [
+                        rdf:type sp:str ;
+                        sp:arg1 spin:_arg1 ;
+                      ] ;
+                    sp:arg2 "-" ;
+                    sp:arg3 "a" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "answer"^^xsd:string ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:predicate sp:arg1 ;
+      spl:valueType rdfs:Resource ;
+      rdfs:comment "Object that this answer describes."^^xsd:string ;
+    ] ;
+  rdfs:comment "Generate answer based on object it originates from."^^xsd:string ;
+  rdfs:subClassOf spin:Functions ;
+.
+form-ecc-lib:create-q
+  rdf:type spin:Function ;
+  spin:body [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "question"^^xsd:string ;
+          ]
+        ) ;
+      sp:text """SELECT ?question
+WHERE {
+     BIND (URI(CONCAT(str(?arg1),\"-\",\"q\")) AS ?question) .
+}
+    
+"""^^xsd:string ;
+      sp:where (
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    rdf:type sp:concat ;
+                    sp:arg1 [
+                        rdf:type sp:str ;
+                        sp:arg1 spin:_arg1 ;
+                      ] ;
+                    sp:arg2 "-" ;
+                    sp:arg3 "q" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "question"^^xsd:string ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:predicate sp:arg1 ;
+      spl:valueType rdfs:Resource ;
+      rdfs:comment "Object that this question describes."^^xsd:string ;
+    ] ;
+  rdfs:comment "Generate question based on object it originates from."^^xsd:string ;
+  rdfs:subClassOf spin:Functions ;
+.
+form-ecc-lib:create-qt
+  rdf:type spin:Function ;
+  spin:body [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "questionTemplate"^^xsd:string ;
+          ]
+        ) ;
+      sp:text """SELECT ?questionTemplate
+WHERE {
+     BIND (URI(CONCAT(str(?arg1),\"-\",\"qt\")) AS ?questionTemplate) .
+}
+    
+"""^^xsd:string ;
+      sp:where (
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    rdf:type sp:concat ;
+                    sp:arg1 [
+                        rdf:type sp:str ;
+                        sp:arg1 spin:_arg1 ;
+                      ] ;
+                    sp:arg2 "-" ;
+                    sp:arg3 "qt" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "questionTemplate"^^xsd:string ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:predicate sp:arg1 ;
+      spl:valueType rdfs:Resource ;
+      rdfs:comment "Entity that this question template describes."^^xsd:string ;
+    ] ;
+  rdfs:comment "Generate question template based on entity it originates from."^^xsd:string ;
+  rdfs:subClassOf spin:Functions ;
+.

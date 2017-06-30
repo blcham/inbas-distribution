@@ -1,0 +1,3771 @@
+# baseURI: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generation-0.2
+# imports: http://onto.fel.cvut.cz/ontologies/aviation
+# imports: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-0.2
+# imports: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-config-0.2
+# imports: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generated-0.2
+# imports: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-lib
+# imports: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-static-0.2
+# imports: http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2/operational-full
+# imports: http://onto.fel.cvut.cz/ontologies/eccairs/mapping/model
+# imports: http://onto.fel.cvut.cz/ontologies/eccairs/model
+# imports: http://onto.fel.cvut.cz/ontologies/form-layout
+# imports: http://onto.fel.cvut.cz/ontologies/lib/sm-module-adapter
+# imports: http://onto.fel.cvut.cz/ontologies/lib/spin-function
+# imports: http://onto.fel.cvut.cz/ontologies/reporting-tool/model
+
+@prefix : <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generation-0.2/> .
+@prefix aviation: <http://onto.fel.cvut.cz/ontologies/aviation/> .
+@prefix aviation-safety: <http://onto.fel.cvut.cz/ontologies/aviation-safety/> .
+@prefix doc: <http://onto.fel.cvut.cz/ontologies/documentation/> .
+@prefix e-a-3.4.0.2: <http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2/> .
+@prefix e-m: <http://onto.fel.cvut.cz/ontologies/eccairs/model/> .
+@prefix e-m-i: <http://onto.fel.cvut.cz/ontologies/eccairs/model/instance#> .
+@prefix e-m-map: <http://onto.fel.cvut.cz/ontologies/eccairs/mapping/model/> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions#> .
+@prefix form: <http://onto.fel.cvut.cz/ontologies/form/> .
+@prefix form-ecc: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form/> .
+@prefix form-ecc-cfg-0.2: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-config-0.2/> .
+@prefix form-ecc-gen-0.2: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generation-0.2/> .
+@prefix form-ecc-lib: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-lib/> .
+@prefix form-ecc-map-0.2: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-mapping-0.2/> .
+@prefix form-layou: <http://onto.fel.cvut.cz/ontologies/form-layout> .
+@prefix form-lt: <http://onto.fel.cvut.cz/ontologies/form-layout/> .
+@prefix kbss-module: <http://onto.fel.cvut.cz/ontologies/lib/module/> .
+@prefix kbss-spif: <http://onto.fel.cvut.cz/ontologies/lib/spin-function/> .
+@prefix km-sesame: <http://onto.fel.cvut.cz/ontologies/lib/module/sesame/> .
+@prefix model-vie: <http://onto.fel.cvut.cz/ontologies/eccairs/model-view> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sm: <http://topbraid.org/sparqlmotion#> .
+@prefix sml: <http://topbraid.org/sparqlmotionlib#> .
+@prefix sp: <http://spinrdf.org/sp#> .
+@prefix spif: <http://spinrdf.org/spif#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix spl: <http://spinrdf.org/spl#> .
+@prefix turtle: <http://www.semanticweb.org/owl/owlapi/turtle#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://inbas.cz/form-generation-test/event_type>
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "event type" ;
+  rdfs:range xsd:string ;
+.
+form-ecc-cfg-0.2:bind-eccairs-repository
+  sm:next form-ecc-gen-0.2:bind-eccairs-model-service-uri ;
+  sm:next form-ecc-gen-0.2:bind-operational-full-service-uri ;
+.
+form-ecc-cfg-0.2:bind-eccairs-schema-service-uri
+  sm:next form-ecc-gen-0.2:attach-possible-values-hook ;
+  sm:next form-ecc-gen-0.2:construct-question-templates ;
+  sm:next form-ecc-gen-0.2:extract-eccairs-schema ;
+  sm:next form-ecc-gen-0.2:populate-answers ;
+  sm:next form-ecc-gen-0.2:populate-question-possible-values ;
+.
+form-ecc-cfg-0.2:bind-rdf4j-server
+  sm:next form-ecc-gen-0.2:bind-imported-reports-repository-uri ;
+  sm:next form-ecc-gen-0.2:bind-reports-repository ;
+  sm:next form-ecc-gen-0.2:bind-sample-reports-repository ;
+  sm:next form-ecc-gen-0.2:bind-schema-mapping-uri ;
+.
+<http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generation-0.2>
+  rdf:type owl:Ontology ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/aviation> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-0.2> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-config-0.2> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generated-0.2> ;
+  owl:imports aviation:eccairs-form-lib ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-static-0.2> ;
+  owl:imports e-a-3.4.0.2:operational-full ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/eccairs/mapping/model> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/eccairs/model> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/form-layout> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/lib/sm-module-adapter> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/lib/spin-function> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/reporting-tool/model> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-mapping-0.2> ;
+#  owl:imports <http://onto.fel.cvut.cz/ontologies/lib/module-external> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+form-ecc-gen-0.2:BindRootQuestion
+  rdf:type sml:BindBySelect ;
+  sm:next form-ecc-gen-0.2:layout-form ;
+  sml:selectQuery [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "rootQuestion" ;
+          ]
+        ) ;
+      sp:text """SELECT ?rootQuestion 
+WHERE {
+    ?rootQuestion a doc:question .
+# TODO temporal fix remove !!!
+   OPTIONAL {
+      ?rootQuestion form:has-template ?rootQT .
+   }
+   FILTER( (?rootQT = e-a-3.4.0.2:e-24-qt) || (!bound(?rootQT))) 
+    FILTER NOT EXISTS {
+        ?superQuestion doc:has_related_question ?rootQuestion . 
+        ?superQuestion a doc:question
+   }
+}""" ;
+      sp:where (
+          [
+            sp:object doc:question ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "rootQuestion" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "rootQT" ;
+                    ] ;
+                  sp:predicate form:has-template ;
+                  sp:subject [
+                      sp:varName "rootQuestion" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:or ;
+                sp:arg1 [
+                    rdf:type sp:eq ;
+                    sp:arg1 [
+                        sp:varName "rootQT" ;
+                      ] ;
+                    sp:arg2 e-a-3.4.0.2:e-24-qt ;
+                  ] ;
+                sp:arg2 [
+                    rdf:type sp:not ;
+                    sp:arg1 [
+                        rdf:type sp:bound ;
+                        sp:arg1 [
+                            sp:varName "rootQT" ;
+                          ] ;
+                      ] ;
+                  ] ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:notExists ;
+                sp:elements (
+                    [
+                      sp:object [
+                          sp:varName "rootQuestion" ;
+                        ] ;
+                      sp:predicate doc:has_related_question ;
+                      sp:subject [
+                          sp:varName "superQuestion" ;
+                        ] ;
+                    ]
+                    [
+                      sp:object doc:question ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "superQuestion" ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  rdfs:label "Bind root question" ;
+.
+form-ecc-gen-0.2:BindSampleReportUri
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-gen-0.2:bind-sample-report-service-uri ;
+  sm:outputVariable "sampleReportUri" ;
+  sml:value "http://onto.fel.cvut.cz/ontologies/documentation/report-i/246BAFD49E19E611B897002655546824.e5x/246BAFD49E19E611B897002655546824.xml" ;
+  rdfs:comment """######################
+###### NOT WORKING #####
+######################
+
+### \" BMS140 letící DCT PITOK se EC EPWW nepodařilo přeladit na kmitočet sektoru M. \"@en
+http://onto.fel.cvut.cz/ontologies/documentation/report-i/246BAFD49E19E611B897002655546824.e5x/246BAFD49E19E611B897002655546824.xml
+
+
+### PIC po DEP ohlasil střet s ptákem v bodě rotace.
+http://onto.fel.cvut.cz/ontologies/documentation/report-i/36E482143035E611B897002655546824.e5x/36E482143035E611B897002655546824.xml
+
+#####################
+###### DEPRECATED #####
+#####################
+
+### RCOM LKPR - Rušení FREQ 132,890 
+http://onto.fel.cvut.cz/ontologies/report-2FA6D6D1AE15E611B897002655546824.xml
+""" ;
+  rdfs:label "Bind sample report uri" ;
+.
+form-ecc-gen-0.2:ExportEccairs
+  rdf:type sml:ExportToRDFFile ;
+  sml:baseURI "http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2" ;
+  sml:targetFilePath "/inbas/forms/eccairs-0.2/output/aviation-eccairs-3.4.0.2.ttl" ;
+  rdfs:label "Save eccairs schema" ;
+.
+form-ecc-gen-0.2:SaveExampleReport
+  rdf:type sml:ExportToRDFFile ;
+  sml:baseURI "http://onto.fel.cvut.cz/ontologies/report-2FA6D6D1AE15E611B897002655546824.xml/temp" ;
+  sml:targetFilePath "/inbas/forms/eccairs-0.2/output/sample-report.ttl" ;
+  rdfs:label "Save sample report" ;
+.
+form-ecc-gen-0.2:appRepositoryUrl
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Application repository url" ;
+  rdfs:range xsd:string ;
+.
+form-ecc-gen-0.2:assign-questions-to-templates
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:construct-view-questions ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "questionTemplate" ;
+              ] ;
+            sp:predicate form:has-template ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+    ?question form:has-template ?questionTemplate .
+}
+WHERE {
+    ?question form:has-question-origin ?qOrigin .
+    ?questionTemplate form:has-template-origin ?tOrigin .
+    ?qOrigin a ?tOrigin .
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "qOrigin" ;
+              ] ;
+            sp:predicate form:has-question-origin ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "tOrigin" ;
+              ] ;
+            sp:predicate form:has-template-origin ;
+            sp:subject [
+                sp:varName "questionTemplate" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "tOrigin" ;
+              ] ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "qOrigin" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "false"^^xsd:boolean ;
+  rdfs:label "Assign questions to templates" ;
+.
+form-ecc-gen-0.2:attach-eccairs-views
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:filter-irrelevant-templates ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "section_qt" ;
+              ] ;
+            sp:predicate form:has-subtemplate ;
+            sp:subject [
+                sp:varName "ent_qt" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "attr_qt" ;
+              ] ;
+            sp:predicate form:has-subtemplate ;
+            sp:subject [
+                sp:varName "section_qt" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "sectionLabelFixed" ;
+              ] ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "section_qt" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "section" ;
+              ] ;
+            sp:predicate form:has-template-origin ;
+            sp:subject [
+                sp:varName "section_qt" ;
+              ] ;
+          ]
+          [
+            sp:object <http://onto.fel.cvut.cz/ontologies/eccairs/model-view/section> ;
+            sp:predicate form:has-origin-type ;
+            sp:subject [
+                sp:varName "section_qt" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "ent_qt" ;
+              ] ;
+            sp:predicate rdf:subject ;
+            sp:subject _:b24891 ;
+          ]
+          [
+            sp:object form:has-subtemplate ;
+            sp:predicate rdf:predicate ;
+            sp:subject _:b24891 ;
+          ]
+          [
+            sp:object [
+                sp:varName "attr_qt" ;
+              ] ;
+            sp:predicate rdf:object ;
+            sp:subject _:b24891 ;
+          ]
+          [
+            sp:object "eccairs-data-schema" ;
+            sp:predicate form:is-relevant-if ;
+            sp:subject _:b24891 ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+     ?ent_qt form:has-subtemplate  ?section_qt .
+     ?section_qt form:has-subtemplate ?attr_qt .
+     ?section_qt rdfs:label ?sectionLabelFixed .    
+     ?section_qt form:has-template-origin   ?section .
+     ?section_qt form:has-origin-type e-mv:section .
+# filtering rule
+     _:has-subtemplate-reification 
+               rdf:subject ?ent_qt ;
+               rdf:predicate form:has-subtemplate ;
+               rdf:object ?attr_qt ;    
+               form:is-relevant-if \"eccairs-data-schema\" .               
+} WHERE {
+# match question template entity -> attribute
+    ?ent_qt form:has-subtemplate ?attr_qt .
+    ?ent_qt form:has-template-origin ?ent .
+    ?attr_qt form:has-template-origin ?attr .
+    ?ent a e-m:entity .
+    ?attr a e-m:attribute .
+
+    SERVICE ?operationalFullServiceUri {          
+         ?topic e-mv:entityid ?ent .
+
+         ?topic  e-mv:has_child  ?section .
+         ?section  e-mv:allattributes   ?attr .
+         ?section rdfs:label ?sectionLabel . 
+     }
+    BIND(form-ecc-lib:create-qt(?section) as ?section_qt) 
+# BIND(spif:titleCase(fn:lower-case(replace(?sectionLabel, \"_\", \" \"))) as ?sectionLabelFixed)
+    BIND(fn:lower-case(replace(?sectionLabel, \"_\", \" \")) as ?sectionLabelFixed)
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "attr_qt" ;
+              ] ;
+            sp:predicate form:has-subtemplate ;
+            sp:subject [
+                sp:varName "ent_qt" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "ent" ;
+              ] ;
+            sp:predicate form:has-template-origin ;
+            sp:subject [
+                sp:varName "ent_qt" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "attr" ;
+              ] ;
+            sp:predicate form:has-template-origin ;
+            sp:subject [
+                sp:varName "attr_qt" ;
+              ] ;
+          ]
+          [
+            sp:object e-m:entity ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "ent" ;
+              ] ;
+          ]
+          [
+            sp:object e-m:attribute ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "attr" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "ent" ;
+                    ] ;
+                  sp:predicate <http://onto.fel.cvut.cz/ontologies/eccairs/model-view/entityid> ;
+                  sp:subject [
+                      sp:varName "topic" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "section" ;
+                    ] ;
+                  sp:predicate <http://onto.fel.cvut.cz/ontologies/eccairs/model-view/has_child> ;
+                  sp:subject [
+                      sp:varName "topic" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "attr" ;
+                    ] ;
+                  sp:predicate <http://onto.fel.cvut.cz/ontologies/eccairs/model-view/allattributes> ;
+                  sp:subject [
+                      sp:varName "section" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "sectionLabel" ;
+                    ] ;
+                  sp:predicate rdfs:label ;
+                  sp:subject [
+                      sp:varName "section" ;
+                    ] ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "operationalFullServiceUri" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-qt ;
+                sp:arg1 [
+                    sp:varName "section" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "section_qt" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type fn:lower-case ;
+                sp:arg1 [
+                    rdf:type sp:replace ;
+                    sp:arg1 [
+                        sp:varName "sectionLabel" ;
+                      ] ;
+                    sp:arg2 "_" ;
+                    sp:arg3 " " ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "sectionLabelFixed" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "false"^^xsd:boolean ;
+  rdfs:label "attach-eccairs-views" ;
+.
+form-ecc-gen-0.2:attach-event-filter
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:construct-sample-question ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "eccEventType" ;
+              ] ;
+            sp:predicate form:is-relevant-if ;
+            sp:subject [
+                sp:varName "qt" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+   ?qt form:is-relevant-if ?eccEventType .
+}
+WHERE {
+    SERVICE ?eccairsMappingServiceUri {	
+		?situation a e-m-map:event-to-attribute-mapping ; 
+					e-m-map:has-e2m-event-type-value ?eccEventType ;
+          			e-m-map:has-e2m-if-present-organization-type ?organizationType ;
+#          			e-m-map:has-e2m-if-present-attribute-value ?eccRelAttributeValue .
+          			e-m-map:has-e2m-related-attribute-value ?eccAttributeValue .
+    }
+   ?qt form:has-template-origin ?eccAttributeValue . 
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object e-m-map:event-to-attribute-mapping ;
+                  sp:predicate rdf:type ;
+                  sp:subject [
+                      sp:varName "situation" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "eccEventType" ;
+                    ] ;
+                  sp:predicate e-m-map:has-e2m-event-type-value ;
+                  sp:subject [
+                      sp:varName "situation" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "organizationType" ;
+                    ] ;
+                  sp:predicate e-m-map:has-e2m-if-present-organization-type ;
+                  sp:subject [
+                      sp:varName "situation" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "eccAttributeValue" ;
+                    ] ;
+                  sp:predicate e-m-map:has-e2m-related-attribute-value ;
+                  sp:subject [
+                      sp:varName "situation" ;
+                    ] ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "eccairsMappingServiceUri" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "eccAttributeValue" ;
+              ] ;
+            sp:predicate form:has-template-origin ;
+            sp:subject [
+                sp:varName "qt" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Attach event type filter to templates" ;
+.
+form-ecc-gen-0.2:attach-possible-values-hook
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:merge-form-data ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "downloadString" ;
+              ] ;
+            sp:predicate form:has-possible-values-query ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+          [
+            sp:object "type-ahead" ;
+            sp:predicate form-lt:has-layout-class ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# TODO nemalo by byt potreba to viazat na eccairs schema URI
+CONSTRUCT {
+    ?question form:has-possible-values-query ?downloadString .
+#  TODO  layout sem nepatri !!!!
+   ?question form-lt:has-layout-class \"type-ahead\" .
+}
+WHERE {
+# get all attributes with predefined value type
+     SERVICE ?eccairsSchemaServiceUri {
+          ?eccAttribute a e-m:attribute .      
+          ?eccAttribute e-m:has-value-type \"PredefinedValueList\" .
+     }
+    ?question a doc:question .
+    ?question form:has-template ?questionTemplate .
+    ?questionTemplate form:has-template-origin ?eccAttribute .       
+    BIND(CONCAT(str(?eccairsSchemaServiceUri), \"&query=\") as ?dowloadPrefix)    
+    BIND(replace(?attributePossibleValuesQueryTemplate, \"XXXXX\", str(?eccAttribute)) as ?downloadSuffixRaw)
+    BIND(ENCODE_FOR_URI(?downloadSuffixRaw) as ?downloadSuffix)
+    BIND(concat(?dowloadPrefix, ?downloadSuffix) as ?downloadString)
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object e-m:attribute ;
+                  sp:predicate rdf:type ;
+                  sp:subject [
+                      sp:varName "eccAttribute" ;
+                    ] ;
+                ]
+                [
+                  sp:object "PredefinedValueList" ;
+                  sp:predicate e-m:has-value-type ;
+                  sp:subject [
+                      sp:varName "eccAttribute" ;
+                    ] ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "eccairsSchemaServiceUri" ;
+              ] ;
+          ]
+          [
+            sp:object doc:question ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "questionTemplate" ;
+              ] ;
+            sp:predicate form:has-template ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "eccAttribute" ;
+              ] ;
+            sp:predicate form:has-template-origin ;
+            sp:subject [
+                sp:varName "questionTemplate" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:concat ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "eccairsSchemaServiceUri" ;
+                      ] ;
+                  ] ;
+                sp:arg2 "&query=" ;
+              ] ;
+            sp:variable [
+                sp:varName "dowloadPrefix" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:replace ;
+                sp:arg1 [
+                    sp:varName "attributePossibleValuesQueryTemplate" ;
+                  ] ;
+                sp:arg2 "XXXXX" ;
+                sp:arg3 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "eccAttribute" ;
+                      ] ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "downloadSuffixRaw" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:encode_for_uri ;
+                sp:arg1 [
+                    sp:varName "downloadSuffixRaw" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "downloadSuffix" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:concat ;
+                sp:arg1 [
+                    sp:varName "dowloadPrefix" ;
+                  ] ;
+                sp:arg2 [
+                    sp:varName "downloadSuffix" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "downloadString" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "TODO nemalo by byt potreba to viazat na eccairs schema URI" ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Attach possible values hook" ;
+.
+form-ecc-gen-0.2:bind-attribute-query
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-gen-0.2:attach-possible-values-hook ;
+  sm:outputVariable "attributePossibleValuesQueryTemplate" ;
+  sml:value """prefix e-m: <http://onto.fel.cvut.cz/ontologies/eccairs/model/> 
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> 
+CONSTRUCT {
+     ?value rdfs:label ?label .
+     ?value rdfs:comment ?explanation .
+}
+WHERE {
+         ?eccAttribute a e-m:attribute .
+         ?eccAttribute e-m:has-child+ ?value .  
+         ?value rdfs:label ?label .
+         ?value e-m:has-explanation ?explanation .
+} 
+VALUES (?eccAttribute) {
+    (<XXXXX>)
+}""" ;
+  rdfs:label "bind-attribute-query" ;
+.
+form-ecc-gen-0.2:bind-concrete-report-service-uri
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-gen-0.2:extract-concrete-report ;
+  sm:outputVariable "concreteReportServiceUri" ;
+  sml:value [
+      rdf:type kbss-spif:create-sparql-service-url ;
+      sp:arg1 [
+          sp:varName "repositoryUrl" ;
+        ] ;
+      sp:arg2 [
+          sp:varName "reportGraphId" ;
+        ] ;
+    ] ;
+  rdfs:label "Bind concrete report service uri" ;
+.
+form-ecc-cfg-0.2:bind-eccairs-mapping-service-uri
+  sm:next form-ecc-gen-0.2:attach-event-filter ;
+.
+form-ecc-gen-0.2:bind-eccairs-model-service-uri
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-gen-0.2:construct-question-templates ;
+  sm:outputVariable "eccairsModelServiceUri" ;
+  sml:value [
+      rdf:type kbss-spif:create-sparql-service-url ;
+      sp:arg1 [
+          sp:varName "eccairsRepositoryUri" ;
+        ] ;
+      sp:arg2 "http://onto.fel.cvut.cz/ontologies/eccairs/model" ;
+    ] ;
+  rdfs:label "Bind eccairs model service uri" ;
+.
+form-ecc-gen-0.2:bind-existence-of-question-answer
+  rdf:type sml:BindBySelect ;
+  sm:next form-ecc-gen-0.2:filter-for-qa-construction ;
+  sml:selectQuery [
+      rdf:type sp:Select ;
+      sp:resultVariables (
+          [
+            sp:varName "qaExists" ;
+          ]
+        ) ;
+      sp:text """SELECT ?qaExists
+WHERE {
+   ?q a  doc:question .
+   BIND(\"true\"^^xsd:boolean as ?qaExists)
+}""" ;
+      sp:where (
+          [
+            sp:object doc:question ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "q" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression "true"^^xsd:boolean ;
+            sp:variable [
+                sp:varName "qaExists" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  rdfs:label "Bind if Q&A exists" ;
+.
+form-ecc-gen-0.2:bind-imported-report-service-uri
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-gen-0.2:extract-imported-report ;
+  sm:outputVariable "importedReportServiceUri" ;
+  sml:value [
+      rdf:type kbss-spif:create-sparql-service-url ;
+      sp:arg1 [
+          sp:varName "repositoryUrl" ;
+        ] ;
+      sp:arg2 [
+          sp:varName "dataGraphId" ;
+        ] ;
+    ] ;
+  rdfs:label "Bind imported report service uri" ;
+.
+form-ecc-gen-0.2:bind-imported-reports-repository-uri
+  rdf:type sml:BindWithConstant ;
+  sm:outputVariable "importedReportsRepositoryUri" ;
+  sml:value [
+      rdf:type sp:concat ;
+      sp:arg1 [
+          sp:varName "rdf4jServerUri" ;
+        ] ;
+      sp:arg2 "/repositories/" ;
+      sp:arg3 "reports-refactoring" ;
+    ] ;
+  rdfs:label "Bind imported reports repository uri" ;
+.
+form-ecc-gen-0.2:bind-operational-full-service-uri
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-gen-0.2:attach-eccairs-views ;
+  sm:outputVariable "operationalFullServiceUri" ;
+  sml:value [
+      rdf:type kbss-spif:create-sparql-service-url ;
+      sp:arg1 [
+          sp:varName "eccairsRepositoryUri" ;
+        ] ;
+      sp:arg2 [
+          sp:varName "operationalFullUri" ;
+        ] ;
+    ] ;
+  rdfs:label "bind-operational-full-service-uri" ;
+.
+form-ecc-gen-0.2:bind-question-template-cache-uri
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-gen-0.2:question-templates-cache-service-uri ;
+  sm:outputVariable "questionTemplatesCacheUri" ;
+  sml:value "http://onto.fel.cvut.cz/ontologies/forms/eccairs/question-templates" ;
+  rdfs:label "Bind question templates cache uri" ;
+.
+form-ecc-gen-0.2:bind-record-context
+  rdf:type sml:BindWithConstant ;
+  sm:outputVariable "reportGraphUriStable" ;
+  sml:value "http://www.inbas.cz/ontologies/reporting-tool/formGen" ;
+  rdfs:label "Bind record graph" ;
+.
+form-ecc-gen-0.2:bind-reports-repository
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-gen-0.2:bind-record-context ;
+  sm:next form-ecc-gen-0.2:question-templates-cache-service-uri ;
+  sm:outputVariable "reportsRepositoryUri" ;
+  sml:value [
+      rdf:type sp:concat ;
+      sp:arg1 [
+          sp:varName "rdf4jServerUri" ;
+        ] ;
+      sp:arg2 "/repositories/" ;
+      sp:arg3 "form-generator" ;
+    ] ;
+  rdfs:label "Bind reports repository" ;
+.
+form-ecc-gen-0.2:bind-sample-report-service-uri
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-gen-0.2:extract-example-report ;
+  sm:outputVariable "sampleReportServiceUri" ;
+  sml:value [
+      rdf:type kbss-spif:create-sparql-service-url ;
+      sp:arg1 [
+          sp:varName "sampleReportsRepositoryUri" ;
+        ] ;
+      sp:arg2 [
+          sp:varName "sampleReportUri" ;
+        ] ;
+    ] ;
+  rdfs:comment " " ;
+  rdfs:label "Bind sample report service uri" ;
+.
+form-ecc-gen-0.2:bind-sample-reports-repository
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-gen-0.2:bind-sample-report-service-uri ;
+  sm:next form-ecc-gen-0.2:remove-all-question-answers ;
+  sm:outputVariable "sampleReportsRepositoryUri" ;
+  sml:value [
+      rdf:type sp:concat ;
+      sp:arg1 [
+          sp:varName "rdf4jServerUri" ;
+        ] ;
+      sp:arg2 "/repositories/" ;
+      sp:arg3 "reports-refactoring" ;
+    ] ;
+  rdfs:label "Bind sample reports repository" ;
+.
+form-ecc-gen-0.2:bind-schema-mapping-uri
+  rdf:type sml:BindWithConstant ;
+  sm:outputVariable "schemaMappingUri" ;
+  sml:value "http://onto.fel.cvut.cz/ontologies/eccairs/mapping/aerodrome" ;
+  rdfs:label "Bind schema mapping uri" ;
+.
+form-ecc-gen-0.2:construct-question-templates
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:attach-eccairs-views ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o_qt" ;
+              ] ;
+            sp:predicate form:has-subtemplate ;
+            sp:subject [
+                sp:varName "s_qt" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 0 - create basic structure of question templates
+CONSTRUCT {
+    ?s_qt form:has-subtemplate ?o_qt .
+}
+WHERE {
+    SERVICE ?eccairsSchemaServiceUri {      
+         ?s a e-m:entity .   
+         ?s e-m:has-child ?o .
+    }
+    BIND(form-ecc-lib:create-qt(?s) as ?s_qt)
+    BIND(form-ecc-lib:create-qt(?o) as ?o_qt) 
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object e-m:entity ;
+                  sp:predicate rdf:type ;
+                  sp:subject [
+                      sp:varName "s" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "o" ;
+                    ] ;
+                  sp:predicate e-m:has-child ;
+                  sp:subject [
+                      sp:varName "s" ;
+                    ] ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "eccairsSchemaServiceUri" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-qt ;
+                sp:arg1 [
+                    sp:varName "s" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "s_qt" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-qt ;
+                sp:arg1 [
+                    sp:varName "o" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "o_qt" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "0 - create basic structure of question templates" ;
+    ] ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "type" ;
+              ] ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "s" ;
+              ] ;
+            sp:predicate form:has-template-origin ;
+            sp:subject [
+                sp:varName "s_qt" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "type" ;
+              ] ;
+            sp:predicate form:has-origin-type ;
+            sp:subject [
+                sp:varName "s_qt" ;
+              ] ;
+          ]
+          [
+            sp:object form:question-template ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "s_qt" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "sLabel" ;
+              ] ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "s_qt" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "sDescription" ;
+              ] ;
+            sp:predicate rdfs:comment ;
+            sp:subject [
+                sp:varName "s_qt" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 1-  attach info to each question template
+CONSTRUCT {
+    ?s a ?type .
+    ?s_qt form:has-template-origin ?s .
+    ?s_qt form:has-origin-type ?type .
+    ?s_qt a form:question-template .
+    ?s_qt rdfs:label ?sLabel .
+    ?s_qt rdfs:comment ?sDescription .
+}
+WHERE {
+      SERVICE  ?eccairsSchemaServiceUri {     
+          ?s a ?type .
+          ?s rdfs:label ?sLabel .
+          ?s e-m:has-explanation ?sDescription .
+          FILTER(?type in (e-m:entity, e-m:attribute))
+      }
+      BIND(form-ecc-lib:create-qt(?s) as ?s_qt)
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "type" ;
+                    ] ;
+                  sp:predicate rdf:type ;
+                  sp:subject [
+                      sp:varName "s" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "sLabel" ;
+                    ] ;
+                  sp:predicate rdfs:label ;
+                  sp:subject [
+                      sp:varName "s" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "sDescription" ;
+                    ] ;
+                  sp:predicate e-m:has-explanation ;
+                  sp:subject [
+                      sp:varName "s" ;
+                    ] ;
+                ]
+                [
+                  rdf:type sp:Filter ;
+                  sp:expression [
+                      rdf:type sp:in ;
+                      sp:arg1 [
+                          sp:varName "type" ;
+                        ] ;
+                      sp:arg2 e-m:entity ;
+                      sp:arg3 e-m:attribute ;
+                    ] ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "eccairsSchemaServiceUri" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-qt ;
+                sp:arg1 [
+                    sp:varName "s" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "s_qt" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "1-  attach info to each question template" ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Construct simple question templates" ;
+.
+form-ecc-gen-0.2:construct-questions_Clone
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:assign-questions-to-templates ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates () ;
+      sp:text """# 5 TODO remove 2 types of instance
+CONSTRUCT {
+    
+}
+WHERE {
+    
+}""" ;
+      sp:where () ;
+      rdfs:comment "5 TODO remove 2 types of instance" ;
+    ] ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "i" ;
+              ] ;
+            sp:predicate form:has-question-origin ;
+            sp:subject [
+                sp:varName "i_q" ;
+              ] ;
+          ]
+          [
+            sp:object doc:question ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "i_q" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "i_type" ;
+              ] ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 1 -  attach info to each question
+CONSTRUCT {
+    ?i_q form:has-question-origin ?i .
+    ?i_q a doc:question .
+    ?i a ?i_type  .
+}
+WHERE {
+#      SERVICE  ?exampleReportServiceUri {     
+          ?i a e-m:instance  .
+          ?i a ?i_type .          
+#      }
+      FILTER(?i_type != e-m:instance)
+      BIND(form-ecc-lib:create-q(?i) as ?i_q)
+}""" ;
+      sp:where (
+          [
+            sp:object e-m:instance ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "i_type" ;
+              ] ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:ne ;
+                sp:arg1 [
+                    sp:varName "i_type" ;
+                  ] ;
+                sp:arg2 e-m:instance ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-q ;
+                sp:arg1 [
+                    sp:varName "i" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "i_q" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "1 -  attach info to each question" ;
+    ] ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o_q" ;
+              ] ;
+            sp:predicate doc:has_related_question ;
+            sp:subject [
+                sp:varName "s_q" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 0 - create basic structure of questions
+CONSTRUCT {
+    ?s_q doc:has_related_question ?o_q .
+}
+WHERE {
+#    SERVICE ?exampleReportServiceUri {      
+         ?s a e-m:instance .   
+         ?s e-m:has-child-instance ?o .
+#    }
+    BIND(form-ecc-lib:create-q(?s) as ?s_q)
+    BIND(form-ecc-lib:create-q(?o) as ?o_q) 
+}""" ;
+      sp:where (
+          [
+            sp:object e-m:instance ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate e-m:has-child-instance ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-q ;
+                sp:arg1 [
+                    sp:varName "s" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "s_q" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-q ;
+                sp:arg1 [
+                    sp:varName "o" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "o_q" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "0 - create basic structure of questions" ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Construct data questions" ;
+.
+form-ecc-gen-0.2:construct-sample-question
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:form-generator-xxx ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "relQ" ;
+              ] ;
+            sp:predicate doc:has_related_question ;
+            sp:subject [
+                sp:varName "relParentQ" ;
+              ] ;
+          ]
+          [
+            sp:object doc:question ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "relQ" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "relQT" ;
+              ] ;
+            sp:predicate form:has-template ;
+            sp:subject [
+                sp:varName "relQ" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 0 - construct questions related to eventType
+# TODO -- !? input must be rather \"filter irrelevant questions\" 
+CONSTRUCT {
+    ?relParentQ doc:has_related_question ?relQ .
+     ?relQ a doc:question .
+#     ?relQ  form-ecc-gen-0.2:has-context \"generated\" . 
+     ?relQ form:has-template ?relQT .
+}
+WHERE {
+     BIND(iri(?eventType) as ?eventTypeIri) 
+     ?relQT form:is-relevant-if ?eventTypeIri .
+     BIND(form-ecc-lib:create-q(str(?relQT)) as ?relQ)
+
+# find parent question to attach to 
+       ?relParentQT form:has-subtemplate ?relQT .
+       ?relParentQ form:has-template ?relParentQT .
+# create only if question does not exist already
+	 OPTIONAL {
+         ?savedQ form:has-template ?relQT .
+     }
+     FILTER( ! bound(?savedQ))
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:iri ;
+                sp:arg1 [
+                    sp:varName "eventType" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "eventTypeIri" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "eventTypeIri" ;
+              ] ;
+            sp:predicate form:is-relevant-if ;
+            sp:subject [
+                sp:varName "relQT" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-q ;
+                sp:arg1 [
+                    rdf:type sp:str ;
+                    sp:arg1 [
+                        sp:varName "relQT" ;
+                      ] ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "relQ" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "relQT" ;
+              ] ;
+            sp:predicate form:has-subtemplate ;
+            sp:subject [
+                sp:varName "relParentQT" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "relParentQT" ;
+              ] ;
+            sp:predicate form:has-template ;
+            sp:subject [
+                sp:varName "relParentQ" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "relQT" ;
+                    ] ;
+                  sp:predicate form:has-template ;
+                  sp:subject [
+                      sp:varName "savedQ" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:not ;
+                sp:arg1 [
+                    rdf:type sp:bound ;
+                    sp:arg1 [
+                        sp:varName "savedQ" ;
+                      ] ;
+                  ] ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment """0 - construct questions related to eventType
+TODO -- !? input must be rather \"filter irrelevant questions\"""" ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Construct event-type questions" ;
+.
+form-ecc-gen-0.2:construct-view-questions
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:construct-sample-question ;
+  sm:next form-ecc-gen-0.2:filter-irrelevant-question ;
+  sm:next form-ecc-gen-0.2:recover-question-template ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "secQ" ;
+              ] ;
+            sp:predicate doc:has_related_question ;
+            sp:subject [
+                sp:varName "entQ" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "attrQ" ;
+              ] ;
+            sp:predicate doc:has_related_question ;
+            sp:subject [
+                sp:varName "secQ" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "secQT" ;
+              ] ;
+            sp:predicate form:has-template ;
+            sp:subject [
+                sp:varName "secQ" ;
+              ] ;
+          ]
+          [
+            sp:object doc:question ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "secQ" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "secOrigin" ;
+              ] ;
+            sp:predicate form:has-question-origin ;
+            sp:subject [
+                sp:varName "secQ" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "sectionLabel" ;
+              ] ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "secQ" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 0 - transfrom from eccairs data schema to views
+CONSTRUCT {
+    ?entQ doc:has_related_question ?secQ .
+    ?secQ doc:has_related_question ?attrQ .
+    ?secQ form:has-template ?secQT .
+    ?secQ a doc:question .
+    ?secQ form:has-question-origin ?secOrigin .
+    ?secQ rdfs:label ?sectionLabel .
+}
+WHERE {
+# find entQ -> attrQ
+        ?entQ form:has-question-origin ?entOrigin .
+        ?entQ doc:has_related_question ?attrQ .
+#  find *Q -> *QT 
+        ?entQ form:has-template ?entQT .
+        ?attrQ  form:has-template ?attrQT .
+# find sectionQT
+        ?secQT form:has-template-origin ?section .
+        ?secQT form:has-origin-type e-mv:section .
+        ?entQT form:has-subtemplate ?secQT .
+       ?secQT form:has-subtemplate ?attrQT .
+# section label
+        OPTIONAL {
+            ?secQT rdfs:label ?sectionLabel .
+        }
+
+   BIND(md5(concat(str(?section),str(?entOrigin))) as ?secId)
+   BIND(uri(concat(str(?section),\"-\",?secId)) AS ?secOrigin)  
+   BIND(form-ecc-lib:create-q(?secOrigin) AS ?secQ)
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "entOrigin" ;
+              ] ;
+            sp:predicate form:has-question-origin ;
+            sp:subject [
+                sp:varName "entQ" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "attrQ" ;
+              ] ;
+            sp:predicate doc:has_related_question ;
+            sp:subject [
+                sp:varName "entQ" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "entQT" ;
+              ] ;
+            sp:predicate form:has-template ;
+            sp:subject [
+                sp:varName "entQ" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "attrQT" ;
+              ] ;
+            sp:predicate form:has-template ;
+            sp:subject [
+                sp:varName "attrQ" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "section" ;
+              ] ;
+            sp:predicate form:has-template-origin ;
+            sp:subject [
+                sp:varName "secQT" ;
+              ] ;
+          ]
+          [
+            sp:object <http://onto.fel.cvut.cz/ontologies/eccairs/model-view/section> ;
+            sp:predicate form:has-origin-type ;
+            sp:subject [
+                sp:varName "secQT" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "secQT" ;
+              ] ;
+            sp:predicate form:has-subtemplate ;
+            sp:subject [
+                sp:varName "entQT" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "attrQT" ;
+              ] ;
+            sp:predicate form:has-subtemplate ;
+            sp:subject [
+                sp:varName "secQT" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "sectionLabel" ;
+                    ] ;
+                  sp:predicate rdfs:label ;
+                  sp:subject [
+                      sp:varName "secQT" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:md5 ;
+                sp:arg1 [
+                    rdf:type sp:concat ;
+                    sp:arg1 [
+                        rdf:type sp:str ;
+                        sp:arg1 [
+                            sp:varName "section" ;
+                          ] ;
+                      ] ;
+                    sp:arg2 [
+                        rdf:type sp:str ;
+                        sp:arg1 [
+                            sp:varName "entOrigin" ;
+                          ] ;
+                      ] ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "secId" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type sp:uri ;
+                sp:arg1 [
+                    rdf:type sp:concat ;
+                    sp:arg1 [
+                        rdf:type sp:str ;
+                        sp:arg1 [
+                            sp:varName "section" ;
+                          ] ;
+                      ] ;
+                    sp:arg2 "-" ;
+                    sp:arg3 [
+                        sp:varName "secId" ;
+                      ] ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "secOrigin" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-q ;
+                sp:arg1 [
+                    sp:varName "secOrigin" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "secQ" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "0 - transfrom from eccairs data schema to views" ;
+    ] ;
+  sml:replace "false"^^xsd:boolean ;
+  rdfs:label "construct-view-questions" ;
+.
+form-ecc-gen-0.2:dataGraphId
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Context that contains original data from email importer that contains 2 types of data -- eccairs schema compliant and aviation ontology compliant data. Aviation ontology compliant data might be possibly reduced (moved to default graph of RT)." ;
+  rdfs:label "Named graph id imported data" ;
+  rdfs:range xsd:string ;
+.
+form-ecc-gen-0.2:deploy-question-templates
+  rdf:type kbss-module:deploy ;
+  km-sesame:p-is-replace "true"^^xsd:boolean ;
+  km-sesame:p-sesame-context-iri "http://onto.fel.cvut.cz/ontologies/forms/eccairs/question-templates" ;
+  km-sesame:p-sesame-repository-name "form-generator" ;
+  km-sesame:p-sesame-server-url "http://martin.inbas.cz/rdf4j-server" ;
+  rdfs:label "deploy-question-templates" ;
+.
+form-ecc-gen-0.2:event
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Event" ;
+  rdfs:range xsd:string ;
+.
+form-ecc-gen-0.2:eventType
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Event type" ;
+  rdfs:range xsd:string ;
+.
+form-ecc-gen-0.2:extract-concrete-report
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:load-questions-and-answers ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+    ?s ?p ?o .
+}
+WHERE {
+   SERVICE ?concreteReportServiceUri {
+         ?s ?p ?o .
+    }
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "o" ;
+                    ] ;
+                  sp:predicate [
+                      sp:varName "p" ;
+                    ] ;
+                  sp:subject [
+                      sp:varName "s" ;
+                    ] ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "concreteReportServiceUri" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "false"^^xsd:boolean ;
+  rdfs:label "Extract concrete report" ;
+.
+form-ecc-gen-0.2:extract-eccairs-schema
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:ExportEccairs ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+    ?s ?p ?o .
+}
+WHERE {
+    SERVICE ?eccairsSchemaServiceUri {
+         ?s ?p ?o .
+    }
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "o" ;
+                    ] ;
+                  sp:predicate [
+                      sp:varName "p" ;
+                    ] ;
+                  sp:subject [
+                      sp:varName "s" ;
+                    ] ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "eccairsSchemaServiceUri" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Extract eccairs schema" ;
+.
+form-ecc-gen-0.2:extract-example-report
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:SaveExampleReport ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+    ?s ?p ?o .
+}
+WHERE {
+    SERVICE ?sampleReportServiceUri {
+         ?s ?p ?o .
+    }
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "o" ;
+                    ] ;
+                  sp:predicate [
+                      sp:varName "p" ;
+                    ] ;
+                  sp:subject [
+                      sp:varName "s" ;
+                    ] ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "sampleReportServiceUri" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Extract sample report" ;
+.
+form-ecc-gen-0.2:extract-imported-report
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:bind-existence-of-question-answer ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+    ?s ?p ?o .
+}
+WHERE {
+   SERVICE ?importedReportServiceUri {
+         ?s ?p ?o .
+    }
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "o" ;
+                    ] ;
+                  sp:predicate [
+                      sp:varName "p" ;
+                    ] ;
+                  sp:subject [
+                      sp:varName "s" ;
+                    ] ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "importedReportServiceUri" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "false"^^xsd:boolean ;
+  rdfs:label "Extract imported report" ;
+.
+form-ecc-gen-0.2:filter-for-qa-construction
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:construct-questions_Clone ;
+  sm:next form-ecc-gen-0.2:populate-answers ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+    ?s ?p ?o .
+}
+WHERE {
+    ?s ?p ?o .
+# TODO put back 
+#   FILTER(! bound(?qaExists))
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "filter-for-qa-construction" ;
+.
+form-ecc-gen-0.2:filter-irrelevant
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:merge-form-data ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+    ?s ?p ?o .
+}
+WHERE {
+    ?s ?p ?o .
+    FILTER(?p != form:has-subtemplate)  
+    FILTER(?p != rdf:object)  
+    FILTER(?p != rdf:subject)
+    FILTER(?p != rdf:predicate)
+    FILTER(?p != form:is-relevant-if)      
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:ne ;
+                sp:arg1 [
+                    sp:varName "p" ;
+                  ] ;
+                sp:arg2 form:has-subtemplate ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:ne ;
+                sp:arg1 [
+                    sp:varName "p" ;
+                  ] ;
+                sp:arg2 rdf:object ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:ne ;
+                sp:arg1 [
+                    sp:varName "p" ;
+                  ] ;
+                sp:arg2 rdf:subject ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:ne ;
+                sp:arg1 [
+                    sp:varName "p" ;
+                  ] ;
+                sp:arg2 rdf:predicate ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:ne ;
+                sp:arg1 [
+                    sp:varName "p" ;
+                  ] ;
+                sp:arg2 form:is-relevant-if ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Filter irrelevant" ;
+.
+form-ecc-gen-0.2:filter-irrelevant-question
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:filter-qa-if-not-needed ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "oQ" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "sQ" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# TODO put ?disabledContext -> VALUES
+CONSTRUCT {
+   ?sQ ?p ?oQ .
+} WHERE {
+      ?sQ ?p ?oQ . 
+      OPTIONAL {
+           ?reification 
+               rdf:subject ?sQT ;
+               rdf:predicate form:has-subtemplate ;
+               rdf:object ?oQT ;    
+               form:is-relevant-if \"eccairs-data-schema\" . 
+         ?sQ form:has-template ?sQT .
+         ?oQ form:has-template ?oQT .  
+     }
+     FILTER(! bound(?reification))
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "oQ" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "sQ" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "sQT" ;
+                    ] ;
+                  sp:predicate rdf:subject ;
+                  sp:subject [
+                      sp:varName "reification" ;
+                    ] ;
+                ]
+                [
+                  sp:object form:has-subtemplate ;
+                  sp:predicate rdf:predicate ;
+                  sp:subject [
+                      sp:varName "reification" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "oQT" ;
+                    ] ;
+                  sp:predicate rdf:object ;
+                  sp:subject [
+                      sp:varName "reification" ;
+                    ] ;
+                ]
+                [
+                  sp:object "eccairs-data-schema" ;
+                  sp:predicate form:is-relevant-if ;
+                  sp:subject [
+                      sp:varName "reification" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "sQT" ;
+                    ] ;
+                  sp:predicate form:has-template ;
+                  sp:subject [
+                      sp:varName "sQ" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "oQT" ;
+                    ] ;
+                  sp:predicate form:has-template ;
+                  sp:subject [
+                      sp:varName "oQ" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:not ;
+                sp:arg1 [
+                    rdf:type sp:bound ;
+                    sp:arg1 [
+                        sp:varName "reification" ;
+                      ] ;
+                  ] ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "TODO put ?disabledContext -> VALUES" ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "filter irrelevant questions" ;
+.
+form-ecc-gen-0.2:filter-irrelevant-templates
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:deploy-question-templates ;
+  sm:next form-ecc-gen-0.2:question-template-merge ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# TODO put ?disabledContext -> VALUES
+CONSTRUCT {
+   ?s ?p ?o .
+} WHERE {
+      ?s ?p ?o . 
+      OPTIONAL {
+           ?reification 
+               rdf:subject ?s ;
+               rdf:predicate ?p ;
+               rdf:object ?o ;    
+               form:is-relevant-if \"eccairs-data-schema\" .   
+     }
+     FILTER(! bound(?reification))
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "s" ;
+                    ] ;
+                  sp:predicate rdf:subject ;
+                  sp:subject [
+                      sp:varName "reification" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "p" ;
+                    ] ;
+                  sp:predicate rdf:predicate ;
+                  sp:subject [
+                      sp:varName "reification" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "o" ;
+                    ] ;
+                  sp:predicate rdf:object ;
+                  sp:subject [
+                      sp:varName "reification" ;
+                    ] ;
+                ]
+                [
+                  sp:object "eccairs-data-schema" ;
+                  sp:predicate form:is-relevant-if ;
+                  sp:subject [
+                      sp:varName "reification" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:not ;
+                sp:arg1 [
+                    rdf:type sp:bound ;
+                    sp:arg1 [
+                        sp:varName "reification" ;
+                      ] ;
+                  ] ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "TODO put ?disabledContext -> VALUES" ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Filter irrelevant templates" ;
+.
+form-ecc-gen-0.2:filter-qa-if-not-needed
+  rdf:type sml:ApplyConstruct ;
+  kbss-module:has-debug-mode-flag "true"^^xsd:boolean ;
+  sm:next form-ecc-gen-0.2:form-generator-xxx ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+    ?s ?p ?o .
+}
+WHERE {
+    ?s ?p ?o .
+   FILTER(! bound(?qaExists))
+# TODO remove
+#    FILTER(  
+#              (! bound(?qaExists)) || 
+#             (! 
+#                 (
+#                     (?p = doc:has_object_value) ||
+#                     (?p = doc:has_data_value)
+#                  )
+#              )
+#    )
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:not ;
+                sp:arg1 [
+                    rdf:type sp:bound ;
+                    sp:arg1 [
+                        sp:varName "qaExists" ;
+                      ] ;
+                  ] ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Filter q & a if not needed" ;
+.
+form-ecc-gen-0.2:form-generator
+  rdf:type kbss-module:form-generator ;
+  rdfs:label "Form generator" ;
+.
+form-ecc-gen-0.2:form-generator-xxx
+  rdf:type sml:ApplyConstruct ;
+  kbss-module:has-input-graph-constraint [
+      rdf:type sp:Ask ;
+      sp:text """# there exists generated question but only loaded ones should be present
+ASK 
+WHERE {
+     FILTER NOT EXISTS {
+         ?s a doc:question .
+         FILTER(contains(str(?s), \"http://onto.fel.cvut.cz/ontologies/eccairs/model/instance\"))
+     }
+     FILTER(bound(?qaExists))
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:notExists ;
+                sp:elements (
+                    [
+                      sp:object doc:question ;
+                      sp:predicate rdf:type ;
+                      sp:subject [
+                          sp:varName "s" ;
+                        ] ;
+                    ]
+                    [
+                      rdf:type sp:Filter ;
+                      sp:expression [
+                          rdf:type sp:contains ;
+                          sp:arg1 [
+                              rdf:type sp:str ;
+                              sp:arg1 [
+                                  sp:varName "s" ;
+                                ] ;
+                            ] ;
+                          sp:arg2 "http://onto.fel.cvut.cz/ontologies/eccairs/model/instance" ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:bound ;
+                sp:arg1 [
+                    sp:varName "qaExists" ;
+                  ] ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "there exists generated question but only loaded ones should be present" ;
+    ] ;
+  sm:next form-ecc-gen-0.2:BindRootQuestion ;
+  sm:next form-ecc-gen-0.2:attach-possible-values-hook ;
+  sm:next form-ecc-gen-0.2:filter-irrelevant ;
+  sm:next form-ecc-gen-0.2:form-generator ;
+  sm:next form-ecc-gen-0.2:populate-question-from-template ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+    ?s ?p ?o .    
+}
+WHERE {
+    ?s ?p ?o .
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "false"^^xsd:boolean ;
+  rdfs:label "form-generator-yyy" ;
+.
+form-ecc-gen-0.2:generateEccairsForms
+  rdf:type sm:Function ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:defaultValue "http://martin.inbas.cz/rdf4j-server/repositories/form-generator" ;
+      spl:optional "false"^^xsd:boolean ;
+      spl:predicate form-ecc-gen-0.2:repositoryUrl ;
+      sm:next form-ecc-gen-0.2:bind-concrete-report-service-uri ;
+      sm:next form-ecc-gen-0.2:bind-imported-report-service-uri ;
+      rdfs:comment "Repository url parameter" ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:defaultValue "http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2/vl-a-390/v-2180107" ;
+      spl:optional "true"^^xsd:boolean ;
+      spl:predicate form-ecc-gen-0.2:eventType ;
+      sm:next form-ecc-gen-0.2:construct-sample-question ;
+      rdfs:comment "Event type." ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:defaultValue "http://onto.fel.cvut.cz/ontologies/ufo/Event#instance-351263038" ;
+      spl:optional "true"^^xsd:boolean ;
+      spl:predicate form-ecc-gen-0.2:event ;
+      spl:valueType xsd:string ;
+      sm:next form-ecc-gen-0.2:merge-form-data ;
+      rdfs:comment "Event parameter" ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:defaultValue "http://www.inbas.cz/ontologies/reporting-tool/formGen1471849823485" ;
+      spl:optional "false"^^xsd:boolean ;
+      spl:predicate form-ecc-gen-0.2:reportGraphId ;
+      sm:next form-ecc-gen-0.2:bind-concrete-report-service-uri ;
+      rdfs:comment "Named graph id of report parameter" ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:defaultValue "http://www.inbas.cz/ontologies/reporting-tool/formGen1471849823487" ;
+      spl:optional "false"^^xsd:boolean ;
+      spl:predicate form-ecc-gen-0.2:dataGraphId ;
+      sm:next form-ecc-gen-0.2:bind-imported-report-service-uri ;
+      rdfs:comment "Named graph id of imported email parameter" ;
+    ] ;
+  sm:returnModule form-ecc-gen-0.2:generateEccairsForms_Return ;
+  rdfs:comment "Generate forms from occurrence category." ;
+  rdfs:subClassOf sm:Functions ;
+.
+form-ecc-gen-0.2:generateEccairsForms_Return
+  rdf:type sml:ReturnRDF ;
+  sml:baseURI "http://miro.example.org" ;
+  sml:serialization sml:JSONLD ;
+.
+form-ecc-gen-0.2:has-context
+  rdf:type rdf:Property ;
+  rdfs:label "has-context" ;
+.
+form-ecc-gen-0.2:layout-form
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:merge-form-data ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object "form" ;
+            sp:predicate form-lt:has-layout-class ;
+            sp:subject [
+                sp:varName "rootQuestion" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 0 - create form layout question
+CONSTRUCT {
+    ?rootQuestion    form-lt:has-layout-class \"form\" .
+}
+WHERE {    
+
+}""" ;
+      sp:where () ;
+      rdfs:comment "0 - create form layout question" ;
+    ] ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object "section" ;
+            sp:predicate form-lt:has-layout-class ;
+            sp:subject [
+                sp:varName "sectionQuestion" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 1 - create section layout classes
+CONSTRUCT {
+    ?sectionQuestion    form-lt:has-layout-class \"section\" .
+}
+WHERE {    
+    ?sectionQuestion doc:has_related_question ?subQuestion .
+    FILTER(?rootQuestion != ?sectionQuestion)
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "subQuestion" ;
+              ] ;
+            sp:predicate doc:has_related_question ;
+            sp:subject [
+                sp:varName "sectionQuestion" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:ne ;
+                sp:arg1 [
+                    sp:varName "rootQuestion" ;
+                  ] ;
+                sp:arg2 [
+                    sp:varName "sectionQuestion" ;
+                  ] ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "1 - create section layout classes" ;
+    ] ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object "wizard-step" ;
+            sp:predicate form-lt:has-layout-class ;
+            sp:subject [
+                sp:varName "topSectionQuestion" ;
+              ] ;
+          ]
+          [
+            sp:object "section" ;
+            sp:predicate form-lt:has-layout-class ;
+            sp:subject [
+                sp:varName "topSectionQuestion" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 2- create wizard step layout for top level sections
+CONSTRUCT {
+    ?topSectionQuestion    form-lt:has-layout-class \"wizard-step\" .
+# TODO !!! remove asi ??
+    ?topSectionQuestion    form-lt:has-layout-class \"section\" .
+}
+WHERE {    
+    ?rootQuestion doc:has_related_question ?topSectionQuestion .
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "topSectionQuestion" ;
+              ] ;
+            sp:predicate doc:has_related_question ;
+            sp:subject [
+                sp:varName "rootQuestion" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "2- create wizard step layout for top level sections" ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Layout form" ;
+.
+form-ecc-gen-0.2:load-questions-and-answers
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:form-generator-xxx ;
+  sm:next form-ecc-gen-0.2:recover-question-template ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+    ?s ?p ?o .
+}
+WHERE {
+    ?s ?p ?o .
+    FILTER(
+              strstarts(str(?p), str(doc:)) 
+              || strstarts(str(?p), str(form:))
+              || strstarts(str(?p), str(rdf:)) 
+              || strstarts(str(?p), str(rdfs:))
+			  || strstarts(str(?p), str(owl:))
+    )
+#  FILTER(false)
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:or ;
+                sp:arg1 [
+                    rdf:type sp:or ;
+                    sp:arg1 [
+                        rdf:type sp:or ;
+                        sp:arg1 [
+                            rdf:type sp:or ;
+                            sp:arg1 [
+                                rdf:type sp:strstarts ;
+                                sp:arg1 [
+                                    rdf:type sp:str ;
+                                    sp:arg1 [
+                                        sp:varName "p" ;
+                                      ] ;
+                                  ] ;
+                                sp:arg2 [
+                                    rdf:type sp:str ;
+                                    sp:arg1 doc: ;
+                                  ] ;
+                              ] ;
+                            sp:arg2 [
+                                rdf:type sp:strstarts ;
+                                sp:arg1 [
+                                    rdf:type sp:str ;
+                                    sp:arg1 [
+                                        sp:varName "p" ;
+                                      ] ;
+                                  ] ;
+                                sp:arg2 [
+                                    rdf:type sp:str ;
+                                    sp:arg1 form: ;
+                                  ] ;
+                              ] ;
+                          ] ;
+                        sp:arg2 [
+                            rdf:type sp:strstarts ;
+                            sp:arg1 [
+                                rdf:type sp:str ;
+                                sp:arg1 [
+                                    sp:varName "p" ;
+                                  ] ;
+                              ] ;
+                            sp:arg2 [
+                                rdf:type sp:str ;
+                                sp:arg1 rdf: ;
+                              ] ;
+                          ] ;
+                      ] ;
+                    sp:arg2 [
+                        rdf:type sp:strstarts ;
+                        sp:arg1 [
+                            rdf:type sp:str ;
+                            sp:arg1 [
+                                sp:varName "p" ;
+                              ] ;
+                          ] ;
+                        sp:arg2 [
+                            rdf:type sp:str ;
+                            sp:arg1 rdfs: ;
+                          ] ;
+                      ] ;
+                  ] ;
+                sp:arg2 [
+                    rdf:type sp:strstarts ;
+                    sp:arg1 [
+                        rdf:type sp:str ;
+                        sp:arg1 [
+                            sp:varName "p" ;
+                          ] ;
+                      ] ;
+                    sp:arg2 [
+                        rdf:type sp:str ;
+                        sp:arg1 owl: ;
+                      ] ;
+                  ] ;
+              ] ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Extract existing q & a" ;
+.
+form-ecc-gen-0.2:merge-form-data
+  rdf:type sml:Merge ;
+  kbss-module:has-input-graph-constraint [
+      rdf:type sp:Ask ;
+      sp:text """# root question does not have any subquestions
+ASK 
+WHERE {
+     ?rootQuestion form-lt:has-layout-class \"form\" .
+     FILTER NOT EXISTS {
+           ?rootQuestion doc:has_related_question ?subQuestion .
+     }
+}""" ;
+      sp:where (
+          [
+            sp:object "form" ;
+            sp:predicate form-lt:has-layout-class ;
+            sp:subject [
+                sp:varName "rootQuestion" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:notExists ;
+                sp:elements (
+                    [
+                      sp:object [
+                          sp:varName "subQuestion" ;
+                        ] ;
+                      sp:predicate doc:has_related_question ;
+                      sp:subject [
+                          sp:varName "rootQuestion" ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "root question does not have any subquestions" ;
+    ] ;
+  kbss-module:has-input-graph-constraint [
+      rdf:type sp:Ask ;
+      sp:text """# there is a question without a label
+ASK
+WHERE {
+    ?question a doc:question .
+    FILTER  NOT  EXISTS {
+            ?question rdfs:label ?label .
+    }
+}""" ;
+      sp:where (
+          [
+            sp:object doc:question ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:notExists ;
+                sp:elements (
+                    [
+                      sp:object [
+                          sp:varName "label" ;
+                        ] ;
+                      sp:predicate rdfs:label ;
+                      sp:subject [
+                          sp:varName "question" ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "there is a question without a label" ;
+    ] ;
+  kbss-module:has-input-graph-constraint [
+      rdf:type sp:Ask ;
+      sp:text """# there is no \"form\" element
+ASK
+WHERE {
+        FILTER  NOT  EXISTS {
+            ?s form-lt:has-layout-class \"form\" .
+        }
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Filter ;
+            sp:expression [
+                rdf:type sp:notExists ;
+                sp:elements (
+                    [
+                      sp:object "form" ;
+                      sp:predicate form-lt:has-layout-class ;
+                      sp:subject [
+                          sp:varName "s" ;
+                        ] ;
+                    ]
+                  ) ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "there is no \"form\" element" ;
+    ] ;
+  sm:next form-ecc-gen-0.2:generateEccairsForms_Return ;
+  rdfs:label "merge-form-data" ;
+.
+form-ecc-gen-0.2:operational-full-uri
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-gen-0.2:bind-operational-full-service-uri ;
+  sm:outputVariable "operationalFullUri" ;
+  sml:value "http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2/views/operational-full" ;
+  rdfs:label "operational-full-uri" ;
+.
+form-ecc-gen-0.2:populate-answers
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:filter-qa-if-not-needed ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "a" ;
+              ] ;
+            sp:predicate doc:has_answer ;
+            sp:subject [
+                sp:varName "q" ;
+              ] ;
+          ]
+          [
+            sp:object doc:answer ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "a" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "codeValue" ;
+              ] ;
+            sp:predicate doc:has_object_value ;
+            sp:subject [
+                sp:varName "a" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "codeLabel" ;
+              ] ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "codeValue" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "codeComment" ;
+              ] ;
+            sp:predicate rdfs:comment ;
+            sp:subject [
+                sp:varName "codeValue" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "codeObject" ;
+              ] ;
+            sp:predicate form:has-answer-origin ;
+            sp:subject [
+                sp:varName "a" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 0 -  populate code value answers
+CONSTRUCT {
+   ?q doc:has_answer ?a .
+   ?a a doc:answer .
+   ?a doc:has_object_value ?codeValue .
+   ?codeValue rdfs:label ?codeLabel .
+  ?codeValue rdfs:comment ?codeComment .
+   ?a form:has-answer-origin ?codeObject .
+}
+WHERE {
+    SERVICE ?eccairsSchemaServiceUri {    
+          ?codeValue rdfs:label ?codeLabel .
+          OPTIONAL {  
+              ?codeValue e-m:has-explanation ?codeComment .
+         }  
+    }
+    ?i a e-m:instance .
+    ?i e-m:has-value ?codeObject .
+    ?codeObject e-m:has-code-value ?codeValue .
+    BIND(form-ecc-lib:create-q(?i) as ?q)
+    BIND(form-ecc-lib:create-a(?codeObject) as ?a)  
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "codeLabel" ;
+                    ] ;
+                  sp:predicate rdfs:label ;
+                  sp:subject [
+                      sp:varName "codeValue" ;
+                    ] ;
+                ]
+                [
+                  rdf:type sp:Optional ;
+                  sp:elements (
+                      [
+                        sp:object [
+                            sp:varName "codeComment" ;
+                          ] ;
+                        sp:predicate e-m:has-explanation ;
+                        sp:subject [
+                            sp:varName "codeValue" ;
+                          ] ;
+                      ]
+                    ) ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "eccairsSchemaServiceUri" ;
+              ] ;
+          ]
+          [
+            sp:object e-m:instance ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "codeObject" ;
+              ] ;
+            sp:predicate e-m:has-value ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "codeValue" ;
+              ] ;
+            sp:predicate e-m:has-code-value ;
+            sp:subject [
+                sp:varName "codeObject" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-q ;
+                sp:arg1 [
+                    sp:varName "i" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "q" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-a ;
+                sp:arg1 [
+                    sp:varName "codeObject" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "a" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "0 -  populate code value answers" ;
+    ] ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "a" ;
+              ] ;
+            sp:predicate doc:has_answer ;
+            sp:subject [
+                sp:varName "q" ;
+              ] ;
+          ]
+          [
+            sp:object doc:answer ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "a" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "textValue" ;
+              ] ;
+            sp:predicate doc:has_data_value ;
+            sp:subject [
+                sp:varName "a" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "textObject" ;
+              ] ;
+            sp:predicate form:has-answer-origin ;
+            sp:subject [
+                sp:varName "a" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# 1 -  populate text value answers 
+CONSTRUCT {
+   ?q doc:has_answer ?a .
+   ?a a doc:answer .
+   ?a doc:has_data_value ?textValue .  
+   ?a form:has-answer-origin ?textObject . 
+}
+WHERE {
+    ?i a e-m:instance .
+    ?i e-m:has-value ?textObject .
+    ?textObject  e-m:has-text-value ?textValue .
+    BIND(form-ecc-lib:create-q(?i) as ?q) 
+    BIND(form-ecc-lib:create-a(?textObject) as ?a)     
+}""" ;
+      sp:where (
+          [
+            sp:object e-m:instance ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "textObject" ;
+              ] ;
+            sp:predicate e-m:has-value ;
+            sp:subject [
+                sp:varName "i" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "textValue" ;
+              ] ;
+            sp:predicate e-m:has-text-value ;
+            sp:subject [
+                sp:varName "textObject" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-q ;
+                sp:arg1 [
+                    sp:varName "i" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "q" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Bind ;
+            sp:expression [
+                rdf:type form-ecc-lib:create-a ;
+                sp:arg1 [
+                    sp:varName "textObject" ;
+                  ] ;
+              ] ;
+            sp:variable [
+                sp:varName "a" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "1 -  populate text value answers" ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Construct answers" ;
+.
+form-ecc-gen-0.2:populate-question-from-template
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:merge-form-data ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "qtLabel" ;
+              ] ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "qtComment" ;
+              ] ;
+            sp:predicate rdfs:comment ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "qtOrigin" ;
+              ] ;
+            sp:predicate form:has-origin-type ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """CONSTRUCT {
+    ?question rdfs:label ?qtLabel .
+    ?question rdfs:comment ?qtComment .
+    ?question form:has-origin-type ?qtOrigin .
+}
+WHERE {
+    ?question form:has-template ?questionTemplate .
+    ?questionTemplate rdfs:label ?qtLabel .    
+    ?questionTemplate form:has-template-origin ?qtOrigin .
+# TODO comment should be part of templates as well -> remove optional
+    OPTIONAL {
+        ?questionTemplate rdfs:comment ?qtComment .
+    }
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "questionTemplate" ;
+              ] ;
+            sp:predicate form:has-template ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "qtLabel" ;
+              ] ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "questionTemplate" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "qtOrigin" ;
+              ] ;
+            sp:predicate form:has-template-origin ;
+            sp:subject [
+                sp:varName "questionTemplate" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "qtComment" ;
+                    ] ;
+                  sp:predicate rdfs:comment ;
+                  sp:subject [
+                      sp:varName "questionTemplate" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+        ) ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Construct questions info from templates" ;
+.
+form-ecc-gen-0.2:populate-question-possible-values
+  rdf:type sml:ApplyConstruct ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "value" ;
+              ] ;
+            sp:predicate form:has-possible-value ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "label" ;
+              ] ;
+            sp:predicate rdfs:label ;
+            sp:subject [
+                sp:varName "value" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "explanation" ;
+              ] ;
+            sp:predicate rdfs:comment ;
+            sp:subject [
+                sp:varName "value" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# TODO attach form generator to it
+CONSTRUCT {
+     ?question form:has-possible-value ?value .
+     ?value rdfs:label ?label .
+     ?value rdfs:comment ?explanation .
+}
+WHERE {
+    ?question a doc:question .
+    ?question form:has-template ?questionTemplate .
+    ?questionTemplate form:has-template-origin ?eccAttribute .
+    SERVICE ?eccairsSchemaServiceUri {    
+         ?eccAttribute a e-m:attribute .
+         ?eccAttribute e-m:has-child+ ?value .  
+         ?value rdfs:label ?label .
+         ?value e-m:has-explanation ?explanation .
+# TODO remove !!!!!!!!!!!
+#        FILTER(?eccAttribute = <http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2/a-454>)
+    }
+}""" ;
+      sp:where (
+          [
+            sp:object doc:question ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "questionTemplate" ;
+              ] ;
+            sp:predicate form:has-template ;
+            sp:subject [
+                sp:varName "question" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "eccAttribute" ;
+              ] ;
+            sp:predicate form:has-template-origin ;
+            sp:subject [
+                sp:varName "questionTemplate" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object e-m:attribute ;
+                  sp:predicate rdf:type ;
+                  sp:subject [
+                      sp:varName "eccAttribute" ;
+                    ] ;
+                ]
+                [
+                  rdf:type sp:TriplePath ;
+                  sp:object [
+                      sp:varName "value" ;
+                    ] ;
+                  sp:path [
+                      rdf:type sp:ModPath ;
+                      sp:modMax -2 ;
+                      sp:modMin 1 ;
+                      sp:subPath e-m:has-child ;
+                    ] ;
+                  sp:subject [
+                      sp:varName "eccAttribute" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "label" ;
+                    ] ;
+                  sp:predicate rdfs:label ;
+                  sp:subject [
+                      sp:varName "value" ;
+                    ] ;
+                ]
+                [
+                  sp:object [
+                      sp:varName "explanation" ;
+                    ] ;
+                  sp:predicate e-m:has-explanation ;
+                  sp:subject [
+                      sp:varName "value" ;
+                    ] ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "eccairsSchemaServiceUri" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "TODO attach form generator to it" ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "!!TMP  Assign question possible values" ;
+.
+form-ecc-gen-0.2:question-template-merge
+  rdf:type sml:Merge ;
+  rdfs:label "!!! TMP question-template-merge" ;
+.
+form-ecc-gen-0.2:question-templates-cache-service-uri
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-gen-0.2:retrieve-generated-question-templates ;
+  sm:outputVariable "questionTemplatesCacheServiceUri" ;
+  sml:value [
+      rdf:type kbss-spif:create-sparql-service-url ;
+      sp:arg1 [
+          sp:varName "reportsRepositoryUri" ;
+        ] ;
+      sp:arg2 [
+          sp:varName "questionTemplatesCacheUri" ;
+        ] ;
+    ] ;
+  rdfs:label "question-templates-cache-service-uri" ;
+.
+form-ecc-gen-0.2:recover-question-template
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:form-generator-xxx ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "savedQT" ;
+              ] ;
+            sp:predicate form:has-template ;
+            sp:subject [
+                sp:varName "savedQuestion" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# recover templates from already saved questions
+CONSTRUCT {
+    ?savedQuestion form:has-template ?savedQT .
+}
+WHERE {
+# TODO might cause problem when deleting questions
+# ?savedQuestion form:has-question-origin ?origin .
+    ?savedQuestion form:has-template ?savedQT . 
+#  FILTER(contains(str(?savedQuestion),\"http://onto.fel.cvut.cz/ontologies/documentation/question#instance\"))
+}""" ;
+      sp:where (
+          [
+            sp:object [
+                sp:varName "savedQT" ;
+              ] ;
+            sp:predicate form:has-template ;
+            sp:subject [
+                sp:varName "savedQuestion" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "recover templates from already saved questions" ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "recover-question-template" ;
+.
+form-ecc-gen-0.2:remove-all-question-answers
+  rdf:type sml:PerformUpdate ;
+  sml:updateQuery [
+      rdf:type sp:Modify ;
+      sp:deletePattern (
+          [
+            sp:object [
+                sp:varName "qObj1" ;
+              ] ;
+            sp:predicate [
+                sp:varName "qProp1" ;
+              ] ;
+            sp:subject [
+                sp:varName "q" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "q" ;
+              ] ;
+            sp:predicate [
+                sp:varName "qProp2" ;
+              ] ;
+            sp:subject [
+                sp:varName "qSubj" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "aObj1" ;
+              ] ;
+            sp:predicate [
+                sp:varName "aProp1" ;
+              ] ;
+            sp:subject [
+                sp:varName "a" ;
+              ] ;
+          ]
+          [
+            sp:object [
+                sp:varName "a" ;
+              ] ;
+            sp:predicate [
+                sp:varName "aProp2" ;
+              ] ;
+            sp:subject [
+                sp:varName "aSubj" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# https://dev.inbas.cz/openrdf-workbench/repositories/reports-refactoring
+prefix doc: <http://onto.fel.cvut.cz/ontologies/documentation/> 
+DELETE {
+	     ?q ?qProp1 ?qObj1 .
+         ?qSubj ?qProp2  ?q . 
+         ?a ?aProp1 ?aObj1 . 
+          ?aSubj ?aProp2  ?a .
+}
+WHERE {
+    ?q a doc:question .
+   
+    OPTIONAL {
+        ?q ?qProp1 ?qObj1 .       
+   }
+   OPTIONAL {
+       ?qSubj ?qProp2  ?q .
+   }
+   
+   ?a a doc:answer  .
+   
+    OPTIONAL {
+        ?a ?aProp1 ?aObj1 .       
+   }
+   OPTIONAL {
+       ?aSubj ?aProp2  ?a .
+   }
+}""" ;
+      sp:where (
+          [
+            sp:object doc:question ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "q" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "qObj1" ;
+                    ] ;
+                  sp:predicate [
+                      sp:varName "qProp1" ;
+                    ] ;
+                  sp:subject [
+                      sp:varName "q" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "q" ;
+                    ] ;
+                  sp:predicate [
+                      sp:varName "qProp2" ;
+                    ] ;
+                  sp:subject [
+                      sp:varName "qSubj" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+          [
+            sp:object doc:answer ;
+            sp:predicate rdf:type ;
+            sp:subject [
+                sp:varName "a" ;
+              ] ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "aObj1" ;
+                    ] ;
+                  sp:predicate [
+                      sp:varName "aProp1" ;
+                    ] ;
+                  sp:subject [
+                      sp:varName "a" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+          [
+            rdf:type sp:Optional ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "a" ;
+                    ] ;
+                  sp:predicate [
+                      sp:varName "aProp2" ;
+                    ] ;
+                  sp:subject [
+                      sp:varName "aSubj" ;
+                    ] ;
+                ]
+              ) ;
+          ]
+        ) ;
+      rdfs:comment "https://dev.inbas.cz/openrdf-workbench/repositories/reports-refactoring" ;
+    ] ;
+  rdfs:label "Remove all question answers in workbench" ;
+.
+form-ecc-gen-0.2:reportGraphId
+  rdf:type owl:DatatypeProperty ;
+  rdfs:comment "Context with actual state of report that is saved by RT thus including saved Q&A model. Q&A data are empty here in case when report is opened for the first time in RT." ;
+  rdfs:label "Named graph id of a report" ;
+  rdfs:range xsd:string ;
+.
+form-ecc-gen-0.2:repositoryUrl
+  rdf:type owl:DatatypeProperty ;
+  rdfs:label "Repository url" ;
+  rdfs:range xsd:string ;
+.
+form-ecc-gen-0.2:retrieve-generated-question-templates
+  rdf:type sml:ApplyConstruct ;
+  sm:next form-ecc-gen-0.2:assign-questions-to-templates ;
+  sm:next form-ecc-gen-0.2:attach-event-filter ;
+  sm:next form-ecc-gen-0.2:form-generator-xxx ;
+  sml:constructQuery [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """# CACHE -- instead of \"filter irrelevant templates\"
+CONSTRUCT {
+    ?s ?p ?o .
+}
+WHERE {
+    SERVICE ?questionTemplatesCacheServiceUri {
+          ?s ?p ?o .
+    }
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:Service ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "o" ;
+                    ] ;
+                  sp:predicate [
+                      sp:varName "p" ;
+                    ] ;
+                  sp:subject [
+                      sp:varName "s" ;
+                    ] ;
+                ]
+              ) ;
+            sp:serviceURI [
+                sp:varName "questionTemplatesCacheServiceUri" ;
+              ] ;
+          ]
+        ) ;
+      rdfs:comment "CACHE -- instead of \"filter irrelevant templates\"" ;
+    ] ;
+  sml:replace "true"^^xsd:boolean ;
+  rdfs:label "Retrieve cached generated question templates" ;
+.
+rdfs:Resource
+  spin:query [
+      rdf:type sp:Construct ;
+      sp:templates (
+          [
+            sp:object [
+                sp:varName "o" ;
+              ] ;
+            sp:predicate [
+                sp:varName "p" ;
+              ] ;
+            sp:subject [
+                sp:varName "s" ;
+              ] ;
+          ]
+        ) ;
+      sp:text """#http://martin.inbas.cz/rdf4j-server/repositories/eccairs-aviation-3.4.0.2?query=
+CONSTRUCT {
+    ?s ?p ?o .
+}
+WHERE {
+    GRAPH <http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2> {
+        ?s ?p ?o .
+    } .
+}""" ;
+      sp:where (
+          [
+            rdf:type sp:NamedGraph ;
+            sp:elements (
+                [
+                  sp:object [
+                      sp:varName "o" ;
+                    ] ;
+                  sp:predicate [
+                      sp:varName "p" ;
+                    ] ;
+                  sp:subject [
+                      sp:varName "s" ;
+                    ] ;
+                ]
+              ) ;
+            sp:graphNameNode <http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2> ;
+          ]
+        ) ;
+      rdfs:comment "http://martin.inbas.cz/rdf4j-server/repositories/eccairs-aviation-3.4.0.2?query=" ;
+    ] ;
+  rdfs:comment """#SELECT ?eccTerm
+INSERT  {
+    graph <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generated> {   
+		?formItem rdfs:label ?label ;        
+		rdfs:comment ?comment ;
+    }
+} 
+WHERE {
+GRAPH <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generated> {
+   {	?formItem a form:section .
+		?formItem <http://onto.fel.cvut.cz/ontologies/form/origin> ?eccTerm .
+    } UNION  {
+       ?formItem a form:question .
+       	?formItem <http://onto.fel.cvut.cz/ontologies/form/origin> ?eccTerm . 
+    } 
+ }
+ GRAPH <http://onto.fel.cvut.cz/ontologies/eccairs-3.4.0.2-v-2016-02-23> {
+	?eccTerm <http://onto.fel.cvut.cz/ontologies/eccairs/model/has-description> ?label.
+	?eccTerm <http://onto.fel.cvut.cz/ontologies/eccairs/model/has-explanation> ?comment.
+    }
+} 
+""" ;
+  rdfs:comment """INSERT {
+      GRAPH <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generated> {
+          ?section form:has-question ?question .
+          ?section a owl:NamedIndividual .
+          ?question a owl:NamedIndividual .
+          ?section a form:section .
+          ?question a form:question .
+          ?question <http://onto.fel.cvut.cz/ontologies/form/origin> ?attribute .
+          ?section <http://onto.fel.cvut.cz/ontologies/form/origin> ?entity .
+       }
+} WHERE {
+   GRAPH <http://onto.fel.cvut.cz/ontologies/eccairs-3.4.0.2> {
+	    ?entity <http://onto.fel.cvut.cz/ontologies/eccairs/model/has-child> ?attribute .
+        BIND(\"http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form/\" AS ?eccairsFormIRI) 
+        BIND( afn:localname(?entity) AS ?entityName)
+ 		BIND(iri(concat(?eccairsFormIRI, ?entityName)) AS ?section)
+   }
+   GRAPH <http://onto.fel.cvut.cz/ontologies/aviation/mapping-ans-eccairs-events-and-attributes> {
+	     ?event <http://onto.fel.cvut.cz/ontologies/documentation/has_question> ?attribute .
+        BIND(\"http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form/\" AS ?eccairsFormIRI)     
+        BIND( afn:localname(?attribute) AS ?attributeName)
+        BIND(iri(concat(?eccairsFormIRI, ?attributeName)) AS ?question)
+   }
+}""" ;
+.

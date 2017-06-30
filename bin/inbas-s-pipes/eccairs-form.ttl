@@ -1,0 +1,22 @@
+# baseURI: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-0.2
+# imports: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generated-0.2
+# imports: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-static-0.2
+# imports: http://onto.fel.cvut.cz/ontologies/form
+
+@prefix eccairs-form-stabl: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-stable> .
+@prefix for: <http://onto.fel.cvut.cz/ontologies/form> .
+@prefix form-ecc: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form/> .
+@prefix form-ecc-gen: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generated/> .
+@prefix form-lt: <http://onto.fel.cvut.cz/ontologies/form-layout/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-0.2>
+  rdf:type owl:Ontology ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generated-0.2> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-static-0.2> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/form> ;
+  owl:versionInfo "Created with TopBraid Composer"^^xsd:string ;
+.

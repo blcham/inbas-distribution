@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY agents "http://onto.fel.cvut.cz/ontologies/aviation/core/agents/" >
+]>
+
+
+<rdf:RDF xmlns="http://onto.fel.cvut.cz/ontologies/aviation/core/agents/"
+     xml:base="http://onto.fel.cvut.cz/ontologies/aviation/core/agents/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:agents="http://onto.fel.cvut.cz/ontologies/aviation/core/agents/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/core/agents">
+        <owl:imports rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/core"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/is_maintenance_of -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-safety/is_maintenance_of"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#AgentPerceptionDisposition -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#AgentPerceptionDisposition">
+        <rdfs:label xml:lang="en">Agent Perception Disposition</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Disposition"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/inheres_in"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">This class contains all the relevant dispositions of an Agent to percive reality.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#ChangePerception -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#ChangePerception">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Perception"/>
+        <rdfs:comment xml:lang="en">This a perception of an event, specifically the perception of change of affairs in the domain, which are manifested by some chage of situation.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Decision -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Decision">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Action"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/causes"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Action"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:comment xml:lang="en">The decision to execute some concrete action(s) among other alternatives based on a previous decision event.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Feel -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Feel">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#AgentPerceptionDisposition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Hear -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Hear">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#AgentPerceptionDisposition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Interpretation -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Interpretation">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Observe -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Observe">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#AgentPerceptionDisposition"/>
+        <rdfs:comment xml:lang="en">This class represents the disposition of an Agent to visually observe reality.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Perception -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Perception">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Action"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty>
+                    <rdf:Description>
+                        <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/is_manifested_by"/>
+                    </rdf:Description>
+                </owl:onProperty>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#AgentPerceptionDisposition"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_pre_situation"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Situation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/causes"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Action"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#RecieveMessage -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#RecieveMessage">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#SendMessage -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#SendMessage">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#SituationEvaluation -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#SituationEvaluation">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Evaluation"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/causes"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Decision"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#SituationPerception -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#SituationPerception">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Perception"/>
+        <rdfs:comment xml:lang="en">Perception of a static cituation which represents the state of afairs after an event in the past which the agent did not percieved.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Smell -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#Smell">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#AgentPerceptionDisposition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#_Concious -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#_Concious">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Action"/>
+        <owl:disjointWith rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#_Unconscious"/>
+        <rdfs:comment xml:lang="en">The agent is aware of the action that it performs.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-core/agents#_Unconscious -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/aviation-core/agents#_Unconscious">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Action"/>
+        <rdfs:comment xml:lang="en">The agent is NOT aware of the action that it performs.</rdfs:comment>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+

@@ -1,0 +1,1152 @@
+<?xml version="1.0"?>
+ 
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY aviation-safety "http://onto.fel.cvut.cz/ontologies/aviation-safety/" >
+]>
+
+
+<rdf:RDF xmlns="http://onto.fel.cvut.cz/ontologies/aviation/safety/factors/"
+     xml:base="http://onto.fel.cvut.cz/ontologies/aviation/safety/factors/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:aviation-safety="http://onto.fel.cvut.cz/ontologies/aviation-safety/">
+    <owl:Ontology rdf:about="http://onto.fel.cvut.cz/ontologies/aviation/safety/factors">
+        <owl:imports rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/core"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/factorsmight_cause -->
+
+    <owl:AnnotationProperty rdf:about="&aviation-safety;factorsmight_cause"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/has_related_eccairs_term -->
+
+    <owl:AnnotationProperty rdf:about="&aviation-safety;has_related_eccairs_term"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/has_location -->
+
+    <owl:ObjectProperty rdf:about="&aviation-safety;has_location">
+        <rdfs:range rdf:resource="&aviation-safety;Spatial_object"/>
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <rdfs:subPropertyOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_participant"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/is_used_by -->
+
+    <owl:ObjectProperty rdf:about="&aviation-safety;is_used_by">
+        <rdfs:subPropertyOf rdf:resource="&aviation-safety;relates_to"/>
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Agent"/>
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/relates_to -->
+
+    <owl:ObjectProperty rdf:about="&aviation-safety;relates_to"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/uses -->
+
+    <owl:ObjectProperty rdf:about="&aviation-safety;uses">
+        <owl:inverseOf rdf:resource="&aviation-safety;is_used_by"/>
+        <rdfs:subPropertyOf rdf:resource="&aviation-safety;relates_to"/>
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Agent"/>
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/has_participant -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/has_participant">
+        <rdfs:subPropertyOf rdf:resource="&aviation-safety;relates_to"/>
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/has_trope -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/has_trope">
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Trope"/>
+        <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/inheres_in"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/inheres_in -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/inheres_in">
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Trope"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/is_participant_of -->
+
+    <owl:ObjectProperty rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/is_participant_of">
+        <rdfs:subPropertyOf rdf:resource="&aviation-safety;relates_to"/>
+        <rdfs:range rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <rdfs:domain rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+        <owl:inverseOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_participant"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/APR_and_TWY_capacity -->
+
+    <owl:Class rdf:about="&aviation-safety;APR_and_TWY_capacity">
+        <rdfs:label>APR and TWY capacity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Collision_Factors"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Structural_Damage_Event"/>
+        <aviation-safety:factorsmight_cause rdf:resource="&aviation-safety;Ground_collision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Aerodrome -->
+
+    <owl:Class rdf:about="&aviation-safety;Aerodrome">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Landing_area"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Aerodrome_apron_management_service_related_event -->
+
+    <owl:Class rdf:about="&aviation-safety;Aerodrome_apron_management_service_related_event">
+        <rdfs:label>Aerodrome apron management service related event</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Aerodrome_services_related_event"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_5030100"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Aerodrome_part -->
+
+    <owl:Class rdf:about="&aviation-safety;Aerodrome_part">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Ground_object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Aerodrome_services_related_event -->
+
+    <owl:Class rdf:about="&aviation-safety;Aerodrome_services_related_event">
+        <rdfs:label>Aerodrome services related event</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Procedure_handling_or_sevicing_event"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Procedure_not_performed_or_incorrect"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_5030000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Aerodrome_structural_part -->
+
+    <owl:Class rdf:about="&aviation-safety;Aerodrome_structural_part">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Aerodrome_part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Aerodrome_surface_area -->
+
+    <owl:Class rdf:about="&aviation-safety;Aerodrome_surface_area">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Aerodrome_structural_part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Aircraft_parking_position_or_gate -->
+
+    <owl:Class rdf:about="&aviation-safety;Aircraft_parking_position_or_gate">
+        <rdfs:label>Aircraft parking position or gate</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Apron-ramp_as_an_entity"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Apron_or_ramp_part"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_100000118"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Aircraft_servicing_and_handling -->
+
+    <owl:Class rdf:about="&aviation-safety;Aircraft_servicing_and_handling">
+        <rdfs:label>Aircraft servicing and handling</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Procedure_handling_or_sevicing_event"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Procedure_not_performed_or_incorrect"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_16000000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Apron-ramp -->
+
+    <owl:Class rdf:about="&aviation-safety;Apron-ramp">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Movement_area"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Apron-ramp_as_an_entity -->
+
+    <owl:Class rdf:about="&aviation-safety;Apron-ramp_as_an_entity">
+        <rdfs:label>Apron ramp as an_entity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;APR_and_TWY_capacity"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_41300000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Apron_or_ramp_congestion -->
+
+    <owl:Class rdf:about="&aviation-safety;Apron_or_ramp_congestion">
+        <rdfs:label>Apron or ramp congestion</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Apron-ramp_as_an_entity"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Reportal_Event"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&aviation-safety;has_location"/>
+                <owl:someValuesFrom rdf:resource="&aviation-safety;Apron-ramp"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_41300200"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Apron_or_ramp_obstruction -->
+
+    <owl:Class rdf:about="&aviation-safety;Apron_or_ramp_obstruction">
+        <rdfs:label>Apron or ramp obstruction</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Apron-ramp_as_an_entity"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Apron_or_ramp_part"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_41300100"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Apron_or_ramp_part -->
+
+    <owl:Class rdf:about="&aviation-safety;Apron_or_ramp_part">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Aerodrome_structural_part"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Area -->
+
+    <owl:Class rdf:about="&aviation-safety;Area">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Location"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Capacity -->
+
+    <owl:Class rdf:about="&aviation-safety;Capacity">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Trope"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Collision_Factors -->
+
+    <owl:Class rdf:about="&aviation-safety;Collision_Factors">
+        <rdfs:label>Collision Factors</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Communication_related_event -->
+
+    <owl:Class rdf:about="&aviation-safety;Communication_related_event">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Condition -->
+
+    <owl:Class rdf:about="&aviation-safety;Condition">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Trope"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Crew -->
+
+    <owl:Class rdf:about="&aviation-safety;Crew">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Flight_participant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Crew_a_ATC_decision -->
+
+    <owl:Class rdf:about="&aviation-safety;Crew_a_ATC_decision">
+        <rdfs:label>Crew a ATC decision</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Collision_Factors"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;management_realted_event"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_participant"/>
+                <owl:someValuesFrom rdf:resource="&aviation-safety;Crew"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <aviation-safety:factorsmight_cause rdf:resource="&aviation-safety;Ground_collision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Crew_or_staff_not_licensed_for_activity -->
+
+    <owl:Class rdf:about="&aviation-safety;Crew_or_staff_not_licensed_for_activity">
+        <rdfs:label>Crew or staff not licensed for activity</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Staffing_related_event"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_7030200"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Data -->
+
+    <owl:Class rdf:about="&aviation-safety;Data">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Equipment -->
+
+    <owl:Class rdf:about="&aviation-safety;Equipment">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Technical_System"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&aviation-safety;is_used_by"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Equipment_and_infrastructure_condition -->
+
+    <owl:Class rdf:about="&aviation-safety;Equipment_and_infrastructure_condition">
+        <rdfs:label>Equipment and infrastructure condition</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Incorrect_use_of_equipment"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;System_failure_cause_damage"/>
+        <aviation-safety:factorsmight_cause rdf:resource="&aviation-safety;Ground_collision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Event_may_cause_damage -->
+
+    <owl:Class rdf:about="&aviation-safety;Event_may_cause_damage">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Flight -->
+
+    <owl:Class rdf:about="&aviation-safety;Flight">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Complex_event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Flight_crew&apos;s_decisions -->
+
+    <owl:Class rdf:about="&aviation-safety;Flight_crew&apos;s_decisions">
+        <rdfs:label>Flight crew&apos;s decisions</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Crew_a_ATC_decision"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_12220000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Flight_crew&apos;s_decisions_to_taxi_or_rpark -->
+
+    <owl:Class rdf:about="&aviation-safety;Flight_crew&apos;s_decisions_to_taxi_or_rpark">
+        <rdfs:label>Flight crew&apos;s decisions  to taxi or rpark</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Use_of_guidance"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_12220200"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Flight_participant -->
+
+    <owl:Class rdf:about="&aviation-safety;Flight_participant">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/General_weather -->
+
+    <owl:Class rdf:about="&aviation-safety;General_weather">
+        <rdfs:label>General weather</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Meteo_conditions"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_participant"/>
+                <owl:allValuesFrom rdf:resource="&aviation-safety;Weather"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_52010000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Ground_collision -->
+
+    <owl:Class rdf:about="&aviation-safety;Ground_collision">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Ground_facility -->
+
+    <rdf:Description rdf:about="&aviation-safety;Ground_facility">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Land_and_hold_short_operation"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Ground_object -->
+
+    <owl:Class rdf:about="&aviation-safety;Ground_object">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Spatial_object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Handling_procedures -->
+
+    <owl:Class rdf:about="&aviation-safety;Handling_procedures">
+        <rdfs:label>Handling procedures</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Procedure_handling_or_sevicing_event"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Procedure_not_performed_or_incorrect"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_16050000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Human_interface-training -->
+
+    <owl:Class rdf:about="&aviation-safety;Human_interface-training">
+        <rdfs:label>Human interface training</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Lack_of_training"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_402000000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Human_related_event_may_cause_damage -->
+
+    <owl:Class rdf:about="&aviation-safety;Human_related_event_may_cause_damage">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Incorrect -->
+
+    <owl:Class rdf:about="&aviation-safety;Incorrect">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Trope"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/inheres_in"/>
+                <owl:someValuesFrom rdf:resource="&aviation-safety;Procedure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Incorrect_use_of_equipment -->
+
+    <owl:Class rdf:about="&aviation-safety;Incorrect_use_of_equipment">
+        <rdfs:label>Incorrect use of equipment</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Collision_Factors"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Human_related_event_may_cause_damage"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&aviation-safety;is_used_by"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_501030000"/>
+        <aviation-safety:factorsmight_cause rdf:resource="&aviation-safety;Ground_collision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Information -->
+
+    <owl:Class rdf:about="&aviation-safety;Information">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Data"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Lack-of -->
+
+    <owl:Class rdf:about="&aviation-safety;Lack-of">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Trope"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/inheres_in"/>
+                <owl:someValuesFrom rdf:resource="&aviation-safety;Training_related_event"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Lack_of_training -->
+
+    <owl:Class rdf:about="&aviation-safety;Lack_of_training">
+        <rdfs:label>Lack of training</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Collision_Factors"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Training_related_event"/>
+        <aviation-safety:factorsmight_cause rdf:resource="&aviation-safety;Ground_collision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Landing_area -->
+
+    <owl:Class rdf:about="&aviation-safety;Landing_area">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Area"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Location -->
+
+    <owl:Class rdf:about="&aviation-safety;Location">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Spatial_object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Loss_of_function -->
+
+    <owl:Class rdf:about="&aviation-safety;Loss_of_function">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Meteo_conditions -->
+
+    <owl:Class rdf:about="&aviation-safety;Meteo_conditions">
+        <rdfs:label>Meteo conditions</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Collision_Factors"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Meteo_conditions_related_event"/>
+        <aviation-safety:factorsmight_cause rdf:resource="&aviation-safety;Ground_collision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Meteo_conditions_related_event -->
+
+    <owl:Class rdf:about="&aviation-safety;Meteo_conditions_related_event">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Movement_area -->
+
+    <owl:Class rdf:about="&aviation-safety;Movement_area">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Aerodrome_surface_area"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Not_performed -->
+
+    <owl:Class rdf:about="&aviation-safety;Not_performed">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Trope"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/inheres_in"/>
+                <owl:someValuesFrom rdf:resource="&aviation-safety;Procedure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Operation -->
+
+    <owl:Class rdf:about="&aviation-safety;Operation">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Organization_related_event -->
+
+    <owl:Class rdf:about="&aviation-safety;Organization_related_event">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Pressure_to_achieve -->
+
+    <owl:Class rdf:about="&aviation-safety;Pressure_to_achieve">
+        <rdfs:label>Pressure to achieve</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Workload_force_to_achieve_work"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_203010000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Procedure -->
+
+    <owl:Class rdf:about="&aviation-safety;Procedure">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Regulation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Procedure_handling_or_sevicing_event -->
+
+    <owl:Class rdf:about="&aviation-safety;Procedure_handling_or_sevicing_event">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Operation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Procedure_not_performed_or_incorrect -->
+
+    <owl:Class rdf:about="&aviation-safety;Procedure_not_performed_or_incorrect">
+        <rdfs:label>Procedure not performed or incorrect</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Collision_Factors"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Regulation_violation_Event"/>
+        <aviation-safety:factorsmight_cause rdf:resource="&aviation-safety;Ground_collision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Psychological-false_hypothesis -->
+
+    <owl:Class rdf:about="&aviation-safety;Psychological-false_hypothesis">
+        <rdfs:label>Psychological false hypothesis</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Psychological_action-information_processing_-Or-decision_making"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_103030700"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Psychological_action-decision_making -->
+
+    <owl:Class rdf:about="&aviation-safety;Psychological_action-decision_making">
+        <rdfs:label>Psychological false hypothesis</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Psychological_action-information_processing_-Or-decision_making"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_103030100"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Psychological_action-information_processing_-Or-decision_making -->
+
+    <owl:Class rdf:about="&aviation-safety;Psychological_action-information_processing_-Or-decision_making">
+        <rdfs:label>Psychological action information processing Or-decision making</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Crew_a_ATC_decision"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_103030000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Ramp_service_equipment -->
+
+    <owl:Class rdf:about="&aviation-safety;Ramp_service_equipment">
+        <rdfs:label>Ramp service equipment</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Equipment"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Equipment_and_infrastructure_condition"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_44100000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Ramp_service_vehicles -->
+
+    <owl:Class rdf:about="&aviation-safety;Ramp_service_vehicles">
+        <rdfs:label>Ramp service vehicles</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Equipment"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Equipment_and_infrastructure_condition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Regulation -->
+
+    <owl:Class rdf:about="&aviation-safety;Regulation">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Information"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Regulation_violation_Event -->
+
+    <owl:Class rdf:about="&aviation-safety;Regulation_violation_Event">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Reportal_Event -->
+
+    <owl:Class rdf:about="&aviation-safety;Reportal_Event">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Spatial_object -->
+
+    <owl:Class rdf:about="&aviation-safety;Spatial_object">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Physical_object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Staff -->
+
+    <owl:Class rdf:about="&aviation-safety;Staff">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Staffing_or_crewing_less_than_required -->
+
+    <owl:Class rdf:about="&aviation-safety;Staffing_or_crewing_less_than_required">
+        <rdfs:label>Staffing or crewing less than required</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Staffing_related_event"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_7030100"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Staffing_related_event -->
+
+    <owl:Class rdf:about="&aviation-safety;Staffing_related_event">
+        <rdfs:label>Staffing related event</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Understaffing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_participant"/>
+                <owl:someValuesFrom rdf:resource="&aviation-safety;Staff"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Standardised_signals_and_communication -->
+
+    <owl:Class rdf:about="&aviation-safety;Standardised_signals_and_communication">
+        <rdfs:label>Standardised signals and communication</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Collision_Factors"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Communication_related_event"/>
+        <aviation-safety:factorsmight_cause rdf:resource="&aviation-safety;Ground_collision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Structural_Damage_Event -->
+
+    <owl:Class rdf:about="&aviation-safety;Structural_Damage_Event">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Loss_of_function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/System_failure_cause_damage -->
+
+    <owl:Class rdf:about="&aviation-safety;System_failure_cause_damage">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Loss_of_function"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Technical_System -->
+
+    <owl:Class rdf:about="&aviation-safety;Technical_System">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Physical_object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/The_interface_between_humans_in_relation_to_acknowledgements_-_visual_signals -->
+
+    <owl:Class rdf:about="&aviation-safety;The_interface_between_humans_in_relation_to_acknowledgements_-_visual_signals">
+        <rdfs:label>The interface between humans in relation  to acknowledgements visual signals</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;The_interface_between_humans_in_relation_to_visual_signals"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_501030200"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/The_interface_between_humans_in_relation_to_ground-hand_signals -->
+
+    <owl:Class rdf:about="&aviation-safety;The_interface_between_humans_in_relation_to_ground-hand_signals">
+        <rdfs:label>The interface between humans in relation to ground-hand signals</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;The_interface_between_humans_in_relation_to_visual_signals"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_501030100"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/The_interface_between_humans_in_relation_to_interactions_-_Or-_team_skills_crew_or_team_resource_management_training -->
+
+    <owl:Class rdf:about="&aviation-safety;The_interface_between_humans_in_relation_to_interactions_-_Or-_team_skills_crew_or_team_resource_management_training">
+        <rdfs:label>The interface between humans in relation to interactions  Or- team skills crew or team resource management training</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Crew_a_ATC_decision"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_participant"/>
+                <owl:onClass rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+                <owl:minQualifiedCardinality rdf:datatype="&xsd;nonNegativeInteger">2</owl:minQualifiedCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_502000000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/The_interface_between_humans_in_relation_to_joint_decision_process -->
+
+    <owl:Class rdf:about="&aviation-safety;The_interface_between_humans_in_relation_to_joint_decision_process">
+        <rdfs:label>The interface between humans in relation to join decision process</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;The_interface_between_humans_in_relation_to_team_skills_crew_or_team_resource_management_training"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_502011000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/The_interface_between_humans_in_relation_to_team_skills_crew_or_team_resource_management_training -->
+
+    <owl:Class rdf:about="&aviation-safety;The_interface_between_humans_in_relation_to_team_skills_crew_or_team_resource_management_training">
+        <rdfs:label>The interface between humans in relation to team skills crew or team resource management training</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;The_interface_between_humans_in_relation_to_interactions_-_Or-_team_skills_crew_or_team_resource_management_training"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_502010000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/The_interface_between_humans_in_relation_to_visual_signals -->
+
+    <owl:Class rdf:about="&aviation-safety;The_interface_between_humans_in_relation_to_visual_signals">
+        <rdfs:label>The interface between humans in relation to visual signals</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Standardised_signals_and_communication"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_502011000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Training_Organization -->
+
+    <owl:Class rdf:about="&aviation-safety;Training_Organization">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Organization"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Training_examination_or_check_situation -->
+
+    <owl:Class rdf:about="&aviation-safety;Training_examination_or_check_situation">
+        <rdfs:label>Training examination or check situation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Lack_of_training"/>
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_204040000"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Training_related_event -->
+
+    <owl:Class rdf:about="&aviation-safety;Training_related_event">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Organization_related_event"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_participant"/>
+                <owl:someValuesFrom rdf:resource="&aviation-safety;instructor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_participant"/>
+                <owl:someValuesFrom rdf:resource="&aviation-safety;student"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Understaffing -->
+
+    <owl:Class rdf:about="&aviation-safety;Understaffing">
+        <rdfs:label>Understaffing</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Collision_Factors"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Reportal_Event"/>
+        <aviation-safety:factorsmight_cause rdf:resource="&aviation-safety;Ground_collision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Use_of_guidance -->
+
+    <owl:Class rdf:about="&aviation-safety;Use_of_guidance">
+        <rdfs:label>Use of guidance</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Human_related_event_may_cause_damage"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Workload_force_to_achieve_work"/>
+        <aviation-safety:factorsmight_cause rdf:resource="&aviation-safety;Ground_collision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Weather -->
+
+    <owl:Class rdf:about="&aviation-safety;Weather">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Workload_force_to_achieve_work -->
+
+    <owl:Class rdf:about="&aviation-safety;Workload_force_to_achieve_work">
+        <rdfs:label>Workload force to achieve work</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Collision_Factors"/>
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Organization_related_event"/>
+        <aviation-safety:factorsmight_cause rdf:resource="&aviation-safety;Ground_collision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/damage -->
+
+    <owl:Class rdf:about="&aviation-safety;damage">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Condition"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/instructor -->
+
+    <owl:Class rdf:about="&aviation-safety;instructor">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/management_realted_event -->
+
+    <owl:Class rdf:about="&aviation-safety;management_realted_event">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/meteo -->
+
+    <owl:Class rdf:about="&aviation-safety;meteo">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/student -->
+
+    <owl:Class rdf:about="&aviation-safety;student">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Action -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Action">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Agent -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Agent">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Complex_event -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Complex_event">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Endurant -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Endurant">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Entity -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Event -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Event">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Perdurant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Object -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Object">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Endurant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Object_snapshot -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Object_snapshot">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Perdurant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Organization -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Organization">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Agent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Perdurant -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Perdurant">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Entity"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Person -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Person">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/physical_Agent"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Physical_object -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Physical_object">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Situation -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Situation">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Perdurant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/Trope -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Trope">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Endurant"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/ufo/physical_Agent -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/physical_Agent">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Agent"/>
+    </owl:Class>
+    <rdf:Description>
+        <rdf:type rdf:resource="&aviation-safety;Ground_collision"/>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

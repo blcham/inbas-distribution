@@ -1,0 +1,168 @@
+# baseURI: http://onto.fel.cvut.cz/ontologies/lib/module
+# imports: http://spinrdf.org/spl
+# imports: http://topbraid.org/sparqlmotion
+# imports: http://topbraid.org/sparqlmotionlib-core
+
+@prefix arg: <http://spinrdf.org/arg#> .
+@prefix kbss-module: <http://onto.fel.cvut.cz/ontologies/lib/module/> .
+@prefix km-param: <http://onto.fel.cvut.cz/ontologies/lib/module-param/> .
+@prefix km-sesame: <http://onto.fel.cvut.cz/ontologies/lib/module/sesame/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sm: <http://topbraid.org/sparqlmotion#> .
+@prefix sp: <http://spinrdf.org/sp#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix spl: <http://spinrdf.org/spl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://onto.fel.cvut.cz/ontologies/lib/module>
+  rdf:type owl:Ontology ;
+  owl:imports <http://spinrdf.org/spl> ;
+  owl:imports <http://topbraid.org/sparqlmotion> ;
+  owl:imports <http://topbraid.org/sparqlmotionlib-core> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+km-param:has-resource-uri
+  rdf:type rdf:Property ;
+  rdfs:label "has resource uri" ;
+.
+kbss-module:bind-rdf-content-hash
+  rdf:type sm:Module ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:optional "false"^^xsd:boolean ;
+      spl:predicate sm:outputVariable ;
+      rdfs:comment "Output variable to store computed hash" ;
+    ] ;
+  rdfs:comment "Bind hash that is computed from input rdf data" ;
+  rdfs:label "Bind rdf content hash" ;
+.
+kbss-module:cli
+  rdf:type sm:Module ;
+  rdfs:label "Command-line" ;
+.
+kbss-module:deploy
+  rdf:type sm:Module ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:optional "false"^^xsd:boolean ;
+      spl:predicate km-sesame:p-sesame-context-iri ;
+      rdfs:comment "Context IRI" ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:optional "false"^^xsd:boolean ;
+      spl:predicate km-sesame:p-sesame-repository-name ;
+      rdfs:comment "Repository name" ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:optional "false"^^xsd:boolean ;
+      spl:predicate km-sesame:p-sesame-server-url ;
+      rdfs:comment "Server URL" ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:predicate km-sesame:p-is-replace ;
+      spl:valueType xsd:boolean ;
+      rdfs:comment "Replace context flag" ;
+    ] ;
+  rdfs:label "Deploy" ;
+.
+kbss-module:form-generator
+  rdf:type sm:Module ;
+  rdfs:label "Form generator" ;
+.
+kbss-module:generic-kbss-modules
+  rdf:type rdfs:Class ;
+  rdfs:label "Generic KBSS modules" ;
+  rdfs:subClassOf kbss-module:kbss-modules ;
+.
+kbss-module:has-debug-mode-flag
+  rdf:type rdf:Property ;
+  rdfs:label "has debug mode flag" ;
+  rdfs:subPropertyOf spin:query ;
+.
+kbss-module:has-input-graph-constraint
+  rdf:type rdf:Property ;
+  rdfs:label "has input graph constraint" ;
+  rdfs:subPropertyOf spin:query ;
+.
+kbss-module:has-output-graph-constraint
+  rdf:type rdf:Property ;
+  rdfs:label "has output graph constraint" ;
+  rdfs:subPropertyOf spin:query ;
+.
+kbss-module:has-target-module-flag
+  rdf:type rdf:Property ;
+  rdfs:label "has target module flag" ;
+  rdfs:subPropertyOf spin:query ;
+.
+kbss-module:import-e5x
+  rdf:type sm:Module ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:optional "false"^^xsd:boolean ;
+      spl:predicate km-param:has-resource-uri ;
+      rdfs:comment "Uri of a resource referencing content of an e5x file" ;
+    ] ;
+  rdfs:comment "Import E5X file by creating RDF representation of the file" ;
+  rdfs:label "Import E5X file" ;
+.
+kbss-module:inbas-modules
+  rdf:type rdfs:Class ;
+  rdfs:label "INBAS modules" ;
+  rdfs:subClassOf kbss-module:kbss-modules ;
+.
+kbss-module:kbss-modules
+  rdf:type rdfs:Class ;
+  rdfs:label "KBSS modules" ;
+  rdfs:subClassOf sm:Modules ;
+.
+km-sesame:p-is-replace
+  rdf:type rdf:Property ;
+  rdfs:label "Is replace" ;
+.
+km-sesame:p-sesame-context-iri
+  rdf:type rdf:Property ;
+  rdfs:label "Sesame context IRI" ;
+.
+km-sesame:p-sesame-repository-name
+  rdf:type rdf:Property ;
+  rdfs:label "Sesame repository name" ;
+.
+km-sesame:p-sesame-server-url
+  rdf:type rdf:Property ;
+  rdfs:label "Sesame server URL" ;
+.
+kbss-module:su-time
+  rdf:type sm:Module ;
+  rdfs:label "SUTime " ;
+.
+kbss-module:tarql
+  rdf:type sm:Module ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:optional "true"^^xsd:boolean ;
+      spl:predicate <http://topbraid.org/sparqlmotionlib#replace> ;
+      rdfs:comment "If set to true, the output triples will only contain the constructed triples. If no values or false are specified, the output will be the union of the input triples and the constructed triples." ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Argument ;
+      spl:predicate <http://topbraid.org/sparqlmotionlib#sourceFilePath> ;
+      rdfs:comment "Source CSV file." ;
+    ] ;
+  spin:constraint [
+      rdf:type spl:Attribute ;
+      spl:minCount 1 ;
+      spl:predicate <http://topbraid.org/sparqlmotionlib#constructQuery> ;
+      rdfs:comment "The TARQL Construct queries that deliver the triples that shall be added." ;
+    ] ;
+  rdfs:comment "Runs one or more TARQL Construct queries on the input triples. The output RDF will consist of the constructed triples and (unless sml:replace is true) the input triples." ;
+  rdfs:label "TARQL" ;
+.
+kbss-module:void
+  rdf:type sm:Module ;
+  rdfs:label "VOID" ;
+.

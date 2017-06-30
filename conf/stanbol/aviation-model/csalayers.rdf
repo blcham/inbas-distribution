@@ -1,0 +1,700 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY csalayers "http://onto.fel.cvut.cz/ontologies/csalayers/" >
+    <!ENTITY csalayers2 "http://onto.fel.cvut.cz/ontologies/csalayers/#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/tarcom/ontologies/2015/11/untitled-ontology-35#"
+     xml:base="http://www.semanticweb.org/tarcom/ontologies/2015/11/untitled-ontology-35"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:csalayers="http://onto.fel.cvut.cz/ontologies/csalayers/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:csalayers2="&csalayers;#">
+    <owl:Ontology rdf:about="http://onto.fel.cvut.cz/ontologies/csalayers">
+        <owl:imports rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/aerodrome"/>
+        <owl:imports rdf:resource="http://www.semanticweb.org/tarcom/ontologies/2015/11/untitled-ontology-36"/>
+        <owl:imports rdf:resource="http://www.semanticweb.org/tarcom/ontologies/2015/11/untitled-ontology-37"/>
+        <owl:imports rdf:resource="http://www.semanticweb.org/tarcom/ontologies/2015/11/untitled-ontology-38"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/may_cause -->
+
+    <owl:AnnotationProperty rdf:about="&csalayers;may_cause"/>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/#may_cause -->
+
+    <owl:AnnotationProperty rdf:about="&csalayers;#may_cause"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers#Task -->
+
+    <owl:Class rdf:about="http://onto.fel.cvut.cz/ontologies/csalayers#Task">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Adverse_state -->
+
+    <rdf:Description rdf:about="&csalayers;Adverse_state">
+        <rdfs:label>Adverse state</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Practices_of_Personnel"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Chain_of_command -->
+
+    <owl:Class rdf:about="&csalayers;Chain_of_command">
+        <rdfs:label>Chain of command</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Structure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Communication -->
+
+    <owl:Class rdf:about="&csalayers;Communication">
+        <rdfs:label>Communication</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Structure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Decision_errors -->
+
+    <owl:Class rdf:about="&csalayers;Decision_errors">
+        <rdfs:label>Decision errors</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Errors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Delegation_of_authority -->
+
+    <owl:Class rdf:about="&csalayers;Delegation_of_authority">
+        <rdfs:label>Delegation of authority</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Structure"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Deviation_from_manual -->
+
+    <owl:Class rdf:about="&csalayers;Deviation_from_manual">
+        <rdfs:label>Deviation from manual </rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Exceptional_(one_time_mistake)"/>
+        <rdfs:subClassOf rdf:resource="&csalayers;Routine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Deviation_from_process -->
+
+    <owl:Class rdf:about="&csalayers;Deviation_from_process">
+        <rdfs:label>Deviation from process </rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Exceptional_(one_time_mistake)"/>
+        <rdfs:subClassOf rdf:resource="&csalayers;Routine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Deviation_from_supervisors_order -->
+
+    <owl:Class rdf:about="&csalayers;Deviation_from_supervisors_order">
+        <rdfs:label>Deviation from supervisor`s order</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Exceptional_(one_time_mistake)"/>
+        <rdfs:subClassOf rdf:resource="&csalayers;Routine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Documentation -->
+
+    <owl:Class rdf:about="&csalayers;Documentation">
+        <rdfs:label>Documentation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Procedures"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Errors -->
+
+    <owl:Class rdf:about="&csalayers;Errors">
+        <rdfs:label>Errors</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Unsafe_Acts"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Exceeded_ability -->
+
+    <owl:Class rdf:about="&csalayers;Exceeded_ability">
+        <rdfs:subClassOf rdf:resource="&csalayers;Decision_errors"/>
+        <rdfs:comment>Exceeded ability</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Exceptional_(one_time_mistake) -->
+
+    <owl:Class rdf:about="&csalayers;Exceptional_(one_time_mistake)">
+        <rdfs:label>Exceptional(one_time_mistake)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Violations"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Excessive_cost_cutting -->
+
+    <owl:Class rdf:about="&csalayers;Excessive_cost_cutting">
+        <rdfs:label>Excessive cost cutting</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Monetary_budgetary_resources"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Human_resources -->
+
+    <owl:Class rdf:about="&csalayers;Human_resources">
+        <rdfs:label>Human resources</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Resource_Management"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Inadequate_process -->
+
+    <owl:Class rdf:about="&csalayers;Inadequate_process">
+        <rdfs:label>Inadequate_process</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Procedures"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Inadequate_skills -->
+
+    <owl:Class rdf:about="&csalayers;Inadequate_skills">
+        <rdfs:label>Inadequate skills</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Skill-based_errors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Inappropriate_technique -->
+
+    <owl:Class rdf:about="&csalayers;Inappropriate_technique">
+        <rdfs:label>Inappropriate technique</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Skill-based_errors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Inappropriate_work_steps_chosen -->
+
+    <owl:Class rdf:about="&csalayers;Inappropriate_work_steps_chosen">
+        <rdfs:label>Inappropriate work steps chosen</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Decision_errors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Incentives -->
+
+    <owl:Class rdf:about="&csalayers;Incentives">
+        <rdfs:label>Incentives</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Operations"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Just_culture -->
+
+    <owl:Class rdf:about="&csalayers;Just_culture">
+        <rdfs:label>Just culture</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Safety_Culture"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Lack_of_funding -->
+
+    <owl:Class rdf:about="&csalayers;Lack_of_funding">
+        <rdfs:subClassOf rdf:resource="&csalayers;Monetary_budgetary_resources"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Limitation -->
+
+    <rdf:Description rdf:about="&csalayers;Limitation">
+        <rdfs:subClassOf rdf:resource="&csalayers;Practices_of_Personnel"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Management_commitment -->
+
+    <owl:Class rdf:about="&csalayers;Management_commitment">
+        <rdfs:label>Management commitment</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Safety_Policy"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/is_event_part_of"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Management"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Misdiagnosed_situation -->
+
+    <owl:Class rdf:about="&csalayers;Misdiagnosed_situation">
+        <rdfs:label>Misdiagnosed situation</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Decision_errors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Monetary_budgetary_resources -->
+
+    <owl:Class rdf:about="&csalayers;Monetary_budgetary_resources">
+        <rdfs:label>Monetary budgetary resources</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Resource_Management"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Operations -->
+
+    <owl:Class rdf:about="&csalayers;Operations">
+        <rdfs:label>Operations</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Organisational_Functionality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/is_event_part_of"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Operation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Organisational_Functionality -->
+
+    <owl:Class rdf:about="&csalayers;Organisational_Functionality">
+        <rdfs:label>Organisational_Functionality</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Organisational_influences"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Organisational_Safety_Climate -->
+
+    <owl:Class rdf:about="&csalayers;Organisational_Safety_Climate">
+        <rdfs:label>Organisational Safety Climate</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Organisational_influences"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Organisational_influences -->
+
+    <owl:Class rdf:about="&csalayers;Organisational_influences">
+        <rdfs:label>Organisational_influences</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;csa_layers_factors"/>
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/is_performed_by"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Organization"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <csalayers2:may_cause rdf:resource="&csalayers;Problem"/>
+        <csalayers2:may_cause rdf:resource="&csalayers;Unsafe_Supervision"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Perceptual_errors_(Visual_illusion_insufficient_magnification) -->
+
+    <owl:Class rdf:about="&csalayers;Perceptual_errors_(Visual_illusion_insufficient_magnification)">
+        <rdfs:label>Perceptual errors (Visual illusion, insufficient
+magnification)</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Skill-based_errors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Poor_design -->
+
+    <owl:Class rdf:about="&csalayers;Poor_design">
+        <rdfs:label>Poor design</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Equipment/facility_resources"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Poor_technique -->
+
+    <owl:Class rdf:about="&csalayers;Poor_technique">
+        <rdfs:label>Poor technique</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Skill-based_errors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Practices_of_Personnel -->
+
+    <rdf:Description rdf:about="&csalayers;Practices_of_Personnel">
+        <rdfs:label>Practices of Personnel</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Preconditions_for_Unsafe_Acts"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Preconditions_for_Unsafe_Acts -->
+
+    <rdf:Description rdf:about="&csalayers;Preconditions_for_Unsafe_Acts">
+        <rdfs:subClassOf rdf:resource="&csalayers;csa_layers_factors"/>
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/is_performed_by"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <csalayers2:may_cause rdf:resource="&csalayers;Problem"/>
+        <csalayers2:may_cause rdf:resource="&csalayers;Unsafe_Acts"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Problem -->
+
+    <owl:Class rdf:about="&csalayers;Problem">
+        <rdfs:label>problem</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Procedures -->
+
+    <owl:Class rdf:about="&csalayers;Procedures">
+        <rdfs:label>Procedures</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Organisational_Functionality"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_participant"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Procedure"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Purchasing_of_unsuitable_equipment -->
+
+    <owl:Class rdf:about="&csalayers;Purchasing_of_unsuitable_equipment">
+        <rdfs:label>Purchasing of unsuitable equipment</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Equipment/facility_resources"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_participant"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Equipment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Resource_Management -->
+
+    <owl:Class rdf:about="&csalayers;Resource_Management">
+        <rdfs:label>Resource Management</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Organisational_Functionality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Risk_management -->
+
+    <owl:Class rdf:about="&csalayers;Risk_management">
+        <rdfs:label>Risk management</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Safety_Oversight"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/is_event_part_of"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Management"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Routine -->
+
+    <owl:Class rdf:about="&csalayers;Routine">
+        <rdfs:label>Routine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Violations"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Safety_Culture -->
+
+    <owl:Class rdf:about="&csalayers;Safety_Culture">
+        <rdfs:label>Safety Culture</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Organisational_Safety_Climate"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Safety_Oversight -->
+
+    <owl:Class rdf:about="&csalayers;Safety_Oversight">
+        <rdfs:label>Safety Oversight</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Organisational_Safety_Climate"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Safety_Policy -->
+
+    <owl:Class rdf:about="&csalayers;Safety_Policy">
+        <rdfs:label>Safety Policy</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Organisational_Safety_Climate"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Safety_programs -->
+
+    <owl:Class rdf:about="&csalayers;Safety_programs">
+        <rdfs:label>Safety programs</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Safety_Oversight"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Skill-based_errors -->
+
+    <owl:Class rdf:about="&csalayers;Skill-based_errors">
+        <rdfs:label> Skill-based errors</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Errors"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Standards -->
+
+    <owl:Class rdf:about="&csalayers;Standards">
+        <rdfs:label>Standards</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Procedures"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Structure -->
+
+    <owl:Class rdf:about="&csalayers;Structure">
+        <rdfs:label>Structure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Organisational_Functionality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Supervisor -->
+
+    <owl:Class rdf:about="&csalayers;Supervisor">
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Supervisory_Violations -->
+
+    <rdf:Description rdf:about="&csalayers;Supervisory_Violations">
+        <rdfs:subClassOf rdf:resource="&csalayers;Unsafe_Supervision"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Supervisory_errors -->
+
+    <rdf:Description rdf:about="&csalayers;Supervisory_errors">
+        <rdfs:subClassOf rdf:resource="&csalayers;Unsafe_Supervision"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Teamwork -->
+
+    <rdf:Description rdf:about="&csalayers;Teamwork">
+        <rdfs:subClassOf rdf:resource="&csalayers;Practices_of_Personnel"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Time_pressure -->
+
+    <owl:Class rdf:about="&csalayers;Time_pressure">
+        <rdfs:label>Time_pressure</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Operations"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Training -->
+
+    <owl:Class rdf:about="&csalayers;Training">
+        <rdfs:label>Training</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Human_resources"/>
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Unsafe_Acts -->
+
+    <owl:Class rdf:about="&csalayers;Unsafe_Acts">
+        <rdfs:label>Unsafe Acts</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;csa_layers_factors"/>
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/is_performed_by"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Agent"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <csalayers2:may_cause rdf:resource="&csalayers;Problem"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Unsafe_Supervision -->
+
+    <rdf:Description rdf:about="&csalayers;Unsafe_Supervision">
+        <rdfs:subClassOf rdf:resource="&csalayers;csa_layers_factors"/>
+        <rdfs:subClassOf rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/Event"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/is_performed_by"/>
+                <owl:someValuesFrom rdf:resource="&csalayers;Supervisor"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <csalayers2:may_cause rdf:resource="&csalayers;Preconditions_for_Unsafe_Acts"/>
+        <csalayers2:may_cause rdf:resource="&csalayers;Problem"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Values -->
+
+    <owl:Class rdf:about="&csalayers;Values">
+        <rdfs:label>Values</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Safety_Culture"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Violations -->
+
+    <owl:Class rdf:about="&csalayers;Violations">
+        <rdfs:label>Violations</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Unsafe_Acts"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Working_conditions -->
+
+    <rdf:Description rdf:about="&csalayers;Working_conditions">
+        <rdfs:subClassOf rdf:resource="&csalayers;Preconditions_for_Unsafe_Acts"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/csa_layers_factors -->
+
+    <owl:Class rdf:about="&csalayers;csa_layers_factors">
+        <rdfs:label>csa layers factors</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Deviation_from_routine_task/check_list -->
+
+    <owl:Class rdf:about="&csalayers;Deviation_from_routine_task/check_list">
+        <rdfs:label>Deviation from routine task/check list</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Exceptional_(one_time_mistake)"/>
+        <rdfs:subClassOf rdf:resource="&csalayers;Routine"/>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Equipment/facility_resources -->
+
+    <owl:Class rdf:about="&csalayers;Equipment/facility_resources">
+        <rdfs:label>Equipment or facilityresources</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Resource_Management"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://onto.fel.cvut.cz/ontologies/ufo/has_participant"/>
+                <owl:someValuesFrom rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation-safety/Equipment"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/csalayers/Misjudged/misperceived -->
+
+    <owl:Class rdf:about="&csalayers;Misjudged/misperceived">
+        <rdfs:label>Misjudged/misperceived</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&csalayers;Decision_errors"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+

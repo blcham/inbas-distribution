@@ -1,0 +1,86 @@
+# baseURI: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-config-0.2
+# imports: http://onto.fel.cvut.cz/ontologies/lib/sm-module-adapter
+# imports: http://onto.fel.cvut.cz/ontologies/lib/spin-function
+# imports: http://topbraid.org/sparqlmotionlib
+
+@prefix : <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-config-0.2/> .
+@prefix fn: <http://www.w3.org/2005/xpath-functions#> .
+@prefix form-ecc-cfg-0.2: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-config-0.2/> .
+@prefix kbss-module: <http://onto.fel.cvut.cz/ontologies/lib/module/> .
+@prefix kbss-spif: <http://onto.fel.cvut.cz/ontologies/lib/spin-function/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sm: <http://topbraid.org/sparqlmotion#> .
+@prefix sml: <http://topbraid.org/sparqlmotionlib#> .
+@prefix sp: <http://spinrdf.org/sp#> .
+@prefix spif: <http://spinrdf.org/spif#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix spl: <http://spinrdf.org/spl#> .
+@prefix turtle: <http://www.semanticweb.org/owl/owlapi/turtle#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-config-0.2>
+  rdf:type owl:Ontology ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/lib/sm-module-adapter> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/lib/spin-function> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+form-ecc-cfg-0.2:bind-eccairs-repository
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-cfg-0.2:bind-eccairs-schema-service-uri ;
+  sm:outputVariable "eccairsRepositoryUri" ;
+  sml:value [
+      rdf:type sp:concat ;
+      sp:arg1 [
+          sp:varName "rdf4jServerUri" ;
+        ] ;
+      sp:arg2 "/repositories/eccairs-aviation-" ;
+      sp:arg3 [
+          sp:varName "eccairsVersion" ;
+        ] ;
+    ] ;
+  rdfs:label "Bind eccairs repository" ;
+.
+form-ecc-cfg-0.2:bind-eccairs-schema-service-uri
+  rdf:type sml:BindWithConstant ;
+  sm:outputVariable "eccairsSchemaServiceUri" ;
+  sml:value [
+      rdf:type kbss-spif:create-sparql-service-url ;
+      sp:arg1 [
+          sp:varName "eccairsRepositoryUri" ;
+        ] ;
+      sp:arg2 [
+          sp:varName "eccairsSchemaUri" ;
+        ] ;
+    ] ;
+  rdfs:label "Bind eccairs schema service uri" ;
+.
+form-ecc-cfg-0.2:bind-eccairs-schema-uri
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-cfg-0.2:bind-eccairs-schema-service-uri ;
+  sm:outputVariable "eccairsSchemaUri" ;
+  sml:value [
+      rdf:type sp:concat ;
+      sp:arg1 "http://onto.fel.cvut.cz/ontologies/eccairs/aviation-" ;
+      sp:arg2 [
+          sp:varName "eccairsVersion" ;
+        ] ;
+    ] ;
+  rdfs:label "Bind eccairs schema uri" ;
+.
+form-ecc-cfg-0.2:bind-eccairs-version
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-cfg-0.2:bind-eccairs-repository ;
+  sm:next form-ecc-cfg-0.2:bind-eccairs-schema-uri ;
+  sm:outputVariable "eccairsVersion" ;
+  sml:value "3.4.0.2" ;
+  rdfs:label "Bind eccairs version" ;
+.
+form-ecc-cfg-0.2:bind-rdf4j-server
+  sml:value "http://localhost:8080/rdf4j-server" ;
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-cfg-0.2:bind-eccairs-repository ;
+  sm:outputVariable "rdf4jServerUri" ;
+  rdfs:label "Bind rdf4j server" ;
+.

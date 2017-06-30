@@ -1,0 +1,75 @@
+# baseURI: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-mapping-0.2
+# imports: http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-config-0.2
+# imports: http://onto.fel.cvut.cz/ontologies/eccairs/mapping/model
+# imports: http://topbraid.org/sparqlmotionfunctions
+# imports: http://topbraid.org/sparqlmotionlib-core
+
+@prefix : <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-mapping-0.2/> .
+@prefix e-a-3.4.0.2: <http://onto.fel.cvut.cz/ontologies/eccairs/aviation-3.4.0.2/> .
+@prefix e-m: <http://onto.fel.cvut.cz/ontologies/eccairs/model/> .
+@prefix e-m-i: <http://onto.fel.cvut.cz/ontologies/eccairs/model/instance#> .
+@prefix e-m-map: <http://onto.fel.cvut.cz/ontologies/eccairs/mapping/model/> .
+@prefix form-ecc-cfg-0.2: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-config-0.2/> .
+@prefix form-ecc-gen-0.2: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-generation-0.2/> .
+@prefix form-ecc-map-0.2: <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-mapping-0.2/> .
+@prefix kbss-spif: <http://onto.fel.cvut.cz/ontologies/lib/spin-function/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sm: <http://topbraid.org/sparqlmotion#> .
+@prefix sml: <http://topbraid.org/sparqlmotionlib#> .
+@prefix sp: <http://spinrdf.org/sp#> .
+@prefix spif: <http://spinrdf.org/spif#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix spl: <http://spinrdf.org/spl#> .
+@prefix turtle: <http://www.semanticweb.org/owl/owlapi/turtle#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+form-ecc-cfg-0.2:bind-eccairs-mapping-service-uri
+  rdf:type sml:BindWithConstant ;
+  sm:outputVariable "eccairsMappingServiceUri" ;
+  sml:value [
+      rdf:type kbss-spif:create-sparql-service-url ;
+      sp:arg1 [
+          sp:varName "eccairsRepositoryUri" ;
+        ] ;
+      sp:arg2 [
+          sp:varName "eccairsMappingUri" ;
+        ] ;
+    ] ;
+  rdfs:label "bind-eccairs-mapping-service-uri" ;
+.
+form-ecc-cfg-0.2:bind-eccairs-repository
+  sm:next form-ecc-cfg-0.2:bind-eccairs-mapping-service-uri ;
+.
+form-ecc-cfg-0.2:bind-eccairs-schema-service-uri
+  sm:next form-ecc-map-0.2:construct-mapping-tmp ;
+.
+form-ecc-cfg-0.2:bind-eccairs-version
+  sm:next form-ecc-cfg-0.2:bind-eccairs-mapping-uri ;
+.
+form-ecc-cfg-0.2:bind-eccairs-mapping-uri
+  rdf:type sml:BindWithConstant ;
+  sm:next form-ecc-cfg-0.2:bind-eccairs-mapping-service-uri ;
+  sm:outputVariable "eccairsMappingUri" ;
+  sml:value [
+      rdf:type sp:concat ;
+      sp:arg1 "http://onto.fel.cvut.cz/ontologies/eccairs/eccairs-" ;
+      sp:arg2 [
+          sp:varName "eccairsVersion" ;
+        ] ;
+      sp:arg3 "/mapping" ;
+    ] ;
+  rdfs:label "Bind eccairs mapping uri" ;
+.
+<http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-mapping-0.2>
+  rdf:type owl:Ontology ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/aviation/eccairs-form-config-0.2> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/eccairs/mapping/model> ;
+  owl:imports <http://onto.fel.cvut.cz/ontologies/lib/sm-module-adapter> ;
+  owl:versionInfo "Created with TopBraid Composer" ;
+.
+form-ecc-map-0.2:construct-mapping-tmp
+  rdf:type sml:ApplyConstruct ;
+  rdfs:label "Construct final mapping" ;
+.

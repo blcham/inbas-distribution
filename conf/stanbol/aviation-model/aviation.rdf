@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY aviation-safety "http://onto.fel.cvut.cz/ontologies/aviation-safety/" >
+]>
+
+
+<rdf:RDF xmlns="http://onto.fel.cvut.cz/ontologies/aviation/"
+     xml:base="http://onto.fel.cvut.cz/ontologies/aviation/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:aviation-safety="http://onto.fel.cvut.cz/ontologies/aviation-safety/">
+    <owl:Ontology rdf:about="http://onto.fel.cvut.cz/ontologies/aviation">
+        <owl:imports rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/aerodrome"/>
+        <owl:imports rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/airline"/>
+        <owl:imports rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/atm"/>
+        <owl:imports rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/documentation"/>
+        <owl:imports rdf:resource="http://onto.fel.cvut.cz/ontologies/aviation/maintenance"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Air_conditioning_system_part -->
+
+    <rdf:Description rdf:about="&aviation-safety;Air_conditioning_system_part">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Airborne_auxiliary_power_unit_system"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://onto.fel.cvut.cz/ontologies/aviation-safety/Hydraulic_compartment_doors -->
+
+    <rdf:Description rdf:about="&aviation-safety;Hydraulic_compartment_doors">
+        <rdfs:subClassOf rdf:resource="&aviation-safety;Tail_cone_door"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="&aviation-safety;Humidity_control_system">
+        <rdfs:label>Humidity control system</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/SensoryData">
+        <rdfs:label>SensoryData</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cargo">
+        <rdfs:label>Cargo</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cabin_pressure_control_system">
+        <rdfs:label>Cabin pressure control system</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/OWL">
+        <rdfs:label>OWL</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Wiring_specific_to_the_electrical_power_system_not_part_of_the_power_distribution_systems">
+        <rdfs:label>Wiring specific to the electrical power system not part of the power distribution systems</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Accessory_compartments">
+        <rdfs:label>Accessory compartments</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Auxiliary_power_unit_door">
+        <rdfs:label>Auxiliary power unit door</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/Tabular">
+        <rdfs:label>Tabular</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/RuleStatement">
+        <rdfs:label>RuleStatement</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/Data">
+        <rdfs:label>Data</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cabin_temperature_indicator">
+        <rdfs:label>Cabin temperature indicator</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Rotorcraft_main_rotor_system">
+        <rdfs:label>Rotorcraft main rotor system</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Equipment_cooling_system">
+        <rdfs:label>Equipment cooling system</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Reciprocating_engine">
+        <rdfs:label>Reciprocating engine</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Helicopter_noise_analysis">
+        <rdfs:label>Helicopter noise analysis</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cabin_pressure_controller">
+        <rdfs:label>Cabin pressure controller</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;runway_strip">
+        <rdfs:label>runway strip</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Electrical_Power_System_Wiring">
+        <rdfs:label>Electrical Power System Wiring</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/Diagrams">
+        <rdfs:label>Diagrams</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Helicopter_Vibration_System_Wiring">
+        <rdfs:label>Helicopter Vibration System Wiring</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cargo_related_systems">
+        <rdfs:label>Cargo compartments</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Miscellaneous_Wiring">
+        <rdfs:label>Miscellaneous Wiring</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/VideoData">
+        <rdfs:label>VideoData</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/AudioData">
+        <rdfs:label>AudioData</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/SimpleDocumentation">
+        <rdfs:label>SimpleDocumentation</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/ImperativeStatement">
+        <rdfs:label>ImperativeStatement</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cargo-accessory_compartment_insulation">
+        <rdfs:label>Cargo-accessory compartment insulation</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Reportable_event">
+        <rdfs:label>Reportable event</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/Structured">
+        <rdfs:label>Structured</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cabin_temperature_controller">
+        <rdfs:label>Cabin temperature controller</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/CompositeManifestation">
+        <rdfs:label>CompositeManifestation</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Pressure_indicator">
+        <rdfs:label>Pressure indicator</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/Relational">
+        <rdfs:label>Relational</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/NaturalLanguage">
+        <rdfs:label>NaturalLanguage</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Central_Maintenance_System_Wiring">
+        <rdfs:label>Central Maintenance System Wiring</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/2014/tis/Runway_incursion_where_no_avoiding_action_is_necessary">
+        <rdfs:label>Runway incursion where no avoiding action is necessary</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/TropeAttributionStatement">
+        <rdfs:label>TropeAttributionStatement</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cabine_pressure_sensor">
+        <rdfs:label>Cabine pressure sensor</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cargo_loading_system">
+        <rdfs:label>Cargo compartments</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/ufo/Fact">
+        <rdfs:label>Fact</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cabin_temperature_control_system">
+        <rdfs:label>Cabin temperature control system</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/ExistentialStatement">
+        <rdfs:label>ExistentialStatement</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Air_conditioning_system_wiring">
+        <rdfs:label>Air conditioning system wiring</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/ChangeStatement">
+        <rdfs:label>ChangeStatement</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cargo_and_accessory_compartments_wiring">
+        <rdfs:label>Cargo and accessory compartments wiring</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Reciprocating_Engine_System_Wiring">
+        <rdfs:label>Reciprocating Engine System Wiring</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Main_Rotor_System_Wiring">
+        <rdfs:label>Main Rotor System Wiring</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Heliport">
+        <rdfs:label>Heliport</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cargo_and_accessory_compartments">
+        <rdfs:label>Cargo and accessory compartments</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/AtomicStatements">
+        <rdfs:label>AtomicStatements</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Ice_detection_system">
+        <rdfs:label>Ice detection system</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Water_line_anti-ice_system">
+        <rdfs:label>Water line anti-ice system</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Air_Conditioning_System_Wiring">
+        <rdfs:label>Air Conditioning System Wiring</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/ImageData">
+        <rdfs:label>ImageData</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Ramp_service_equipment">
+        <aviation-safety:has_related_eccairs_term rdf:resource="http://onto.fel.cvut.cz/ontologies/2014/ECCAIRS_Aviation_1.3.0.12/eccairs-descriptive-factors#category_44100000"/>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Accessory_compartment_doors">
+        <rdfs:label>Accessory compartment doors</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Helicopter_vibration_analysis">
+        <rdfs:label>Helicopter vibration analysis</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/FactualStatements">
+        <rdfs:label>FactualStatements</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/NegationStatement">
+        <rdfs:label>NegationStatement</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Fire_protection_system">
+        <rdfs:label>Fire protection system</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cargo_compartments">
+        <rdfs:label>Cargo compartments</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Cabin_pressure_indicator">
+        <rdfs:label>Cabin pressure indicator</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Pressure_regulator">
+        <rdfs:label>Pressure regulator</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="http://onto.fel.cvut.cz/ontologies/documentation/Statement">
+        <rdfs:label>Statement</rdfs:label>
+    </rdf:Description>
+    <rdf:Description rdf:about="&aviation-safety;Turbine_Engine_System_Wiring">
+        <rdfs:label>Turbine Engine System Wiring</rdfs:label>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
